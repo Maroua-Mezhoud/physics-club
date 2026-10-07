@@ -1,0 +1,1 @@
+console.log("PHYSICS CLUB is running.");
