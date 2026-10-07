@@ -1,0 +1,85 @@
+
+:root {
+    --color-background: #020D26;
+    --color-surface: #081A3B;
+
+    --color-cyan: #00E5F5;
+    --color-blue: #087BFF;
+    --color-violet: #633BFF;
+    --color-magenta: #D64BFF;
+
+    --color-text: #EAF6FF;
+    --color-text-muted: #A8C5E8;
+}
+
+body {
+    margin: 0;
+    padding: 40px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: Arial, sans-serif;
+    line-height: 1.7;
+}
+
+h1 {
+    color: var(--color-cyan);
+    text-align: center;
+    font-size: 42px;
+}
+
+h2,
+h3 {
+    color: var(--color-blue);
+}
+
+p {
+    color: var(--color-text-muted);
+}
+
+/* Club logo */
+.logo {
+    width: 330px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.site-header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 1px solid #087BFF;
+}
+
+.university-name {
+    color: #A8C5E8;
+    font-size: 14px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+.navbar a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    color: var(--color-cyan);
+}
