@@ -70,16 +70,64 @@ p {
 .navbar {
     display: flex;
     justify-content: center;
+    align-items: center;
+
     gap: 40px;
-    padding: 20px;
+    padding: 18px 30px;
+
+    background-color: var(--color-surface);
+    border: 1px solid rgba(0, 229, 245, 0.2);
+    border-radius: 12px;
 }
 
 .navbar a {
     color: var(--color-text);
     text-decoration: none;
     font-size: 16px;
+    transition: 0.3s;
 }
 
 .navbar a:hover {
     color: var(--color-cyan);
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero-label {
+    color: var(--color-cyan);
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+.hero h2 {
+    color: var(--color-text);
+    font-size: 56px;
+    margin: 20px 0;
+}
+
+.hero-text {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    font-size: 18px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 12px 25px;
+
+    background-color: var(--color-blue);
+    color: white;
+
+    text-decoration: none;
+    border-radius: 8px;
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    background-color: var(--color-cyan);
+    color: var(--color-background);
 }
