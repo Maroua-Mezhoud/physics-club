@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join | PHYSICS CLUB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="join-page">
+
+    <section class="join-hero">
+
+        <div class="join-hero-content">
+
+            <p class="section-label">PHYSICS CLUB</p>
+
+            <h1>
+                Join the
+                <span>Exploration.</span>
+            </h1>
+
+            <p class="join-hero-text">
+                A space for students who are curious about physics,
+                programming, and the computational side of science.
+            </p>
+
+            <a href="#application" class="join-start-button">
+                Start Your Application
+                <span>→</span>
+            </a>
+
+        </div>
+
+<div class="join-hero-visual">
+
+    <div class="physics-system">
+
+        <div class="orbit orbit-one">
+            <span class="particle particle-one"></span>
+        </div>
+
+        <div class="orbit orbit-two">
+            <span class="particle particle-two"></span>
+        </div>
+
+        <div class="orbit orbit-three">
+            <span class="particle particle-three"></span>
+        </div>
+
+        <div class="system-center"></div>
+
+    </div>
+
+</div>
+
+    </section>
+
+<section class="join-values">
+
+    <div class="join-values-header">
+        <p class="section-label">WHY JOIN?</p>
+
+        <h2>
+            More than a club.
+            <span>A place to explore.</span>
+        </h2>
+
+        <p>
+            PHYSICS CLUB brings together curiosity, physics,
+            programming, and computational thinking.
+        </p>
+    </div>
+
+    <div class="join-values-grid">
+
+        <article class="value-card">
+            <span class="value-number">01</span>
+            <h3>Physics</h3>
+            <p>
+                Explore physics beyond the classroom
+                through questions, ideas, and discovery.
+            </p>
+        </article>
+
+        <article class="value-card">
+            <span class="value-number">02</span>
+            <h3>Programming</h3>
+            <p>
+                Learn how programming can become
+                a practical tool for scientific work.
+            </p>
+        </article>
+
+        <article class="value-card">
+            <span class="value-number">03</span>
+            <h3>Computational Science</h3>
+            <p>
+                Build simulations and use computation
+                to explore physical systems.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+<section id="application" class="application-section">
+
+    <div class="application-header">
+        <p class="section-label">YOUR NEXT STEP</p>
+
+        <h2>
+            Start your
+            <span>application.</span>
+        </h2>
+
+        <p>
+            Tell us a little about yourself, your interests,
+            and what you would like to explore with PHYSICS CLUB.
+        </p>
+    </div>
+
+    <form class="application-form" id="application-form">
+
+
+    <div class="form-section-title">
+        <span>01</span>
+        <h3>About You</h3>
+    </div>
+
+    <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input
+            type="text"
+            id="full-name"
+            name="full-name"
+            placeholder="Your full name"
+            required
+        >
+    </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+    <label for="level">Academic Level</label>
+
+        <select id="level" name="level" required>
+                <option value="">Select your level</option>
+                <option value="licence-1">Licence 1</option>
+                <option value="licence-2">Licence 2</option>
+                <option value="licence-3">Licence 3</option>
+                <option value="master">Master</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+    <label for="interest">What interests you most?</label>
+
+    <select id="interest" name="interest" required>
+        <option value="">Choose an area</option>
+        <option value="physics">Physics</option>
+        <option value="programming">Programming</option>
+        <option value="simulations">Computational Simulations</option>
+        <option value="research">Scientific Research</option>
+    </select>
+</div>
+
+        <div class="form-section-title form-section-title-full">
+            <span>02</span>
+            <h3>Your Curiosity</h3>
+        </div>
+
+        <div class="form-group form-group-full">
+            <label for="message">Why do you want to join PHYSICS CLUB?</label>
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="What motivates you to join the club? Tell us what you hope to learn, explore, or contribute."
+                required
+            ></textarea>
+        </div>
+
+        <button type="submit" class="application-submit">
+            Submit Application
+            <span>→</span>
+        </button>
+
+    </form>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
