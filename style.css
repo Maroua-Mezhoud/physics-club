@@ -1276,3 +1276,329 @@ html {
 .join-button:active {
     transform: scale(0.95);
 }
+
+/* ==============================
+   RESPONSIVE FOUNDATION
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    /* =========================
+       BODY
+       ========================= */
+
+    body {
+        padding: 0 16px;
+        overflow-x: hidden;
+    }
+
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    .site-header {
+        padding: 35px 0 30px;
+    }
+
+    .header-content {
+        flex-direction: column;
+
+        gap: 25px;
+
+        text-align: center;
+    }
+
+    .header-logo {
+        width: 100%;
+        height: auto;
+    }
+
+    .logo {
+        width: 210px;
+    }
+
+    .header-info {
+        align-items: center;
+    }
+
+    .university-name {
+        max-width: 320px;
+
+        font-size: 15px;
+    }
+
+    .header-description {
+        max-width: 280px;
+    }
+
+
+    /* =========================
+       NAVBAR
+       ========================= */
+
+    .navbar {
+        margin: 15px 0;
+
+        padding: 14px 16px;
+
+        flex-wrap: wrap;
+
+        gap: 18px;
+    }
+
+    .nav-brand {
+        min-width: auto;
+    }
+
+    .brand-name {
+        font-size: 12px;
+
+        letter-spacing: 1.4px;
+    }
+
+    .nav-button {
+        margin-left: auto;
+
+        padding: 9px 13px;
+
+        font-size: 12px;
+    }
+
+    .nav-links {
+        order: 3;
+
+        width: 100%;
+
+        margin: 0;
+
+        padding-top: 12px;
+
+        justify-content: center;
+
+        gap: 12px 20px;
+
+        flex-wrap: wrap;
+
+        border-top: 1px solid rgba(124, 58, 237, 0.12);
+    }
+
+    .nav-links a {
+        padding: 6px 0;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+        padding: 75px 10px 85px;
+    }
+
+    .hero-label {
+        font-size: 11px;
+
+        line-height: 1.8;
+
+        letter-spacing: 2px;
+    }
+
+    .hero h2 {
+        margin: 18px auto;
+
+        font-size: clamp(42px, 12vw, 60px);
+
+        line-height: 1.05;
+    }
+
+    .hero-text {
+        max-width: 340px;
+
+        font-size: 16px;
+    }
+
+    .hero-button {
+        padding: 12px 22px;
+    }
+
+
+    /* =========================
+       SECTIONS
+       ========================= */
+
+    section {
+        width: 100%;
+
+        padding: 60px 10px;
+    }
+
+    #about h2,
+    #vision h2,
+    #projects h2 {
+        font-size: 30px;
+    }
+
+    #about p,
+    #vision p {
+        font-size: 16px;
+    }
+
+
+    /* =========================
+       PROJECTS
+       ========================= */
+
+    .project-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .project-card {
+        padding: 25px;
+    }
+
+
+    /* =========================
+       SIMULATIONS
+       ========================= */
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+    .section-heading > p:last-child {
+        font-size: 16px;
+    }
+
+    .simulation-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .simulation-card {
+        padding: 25px;
+    }
+
+
+    /* =========================
+       RESOURCES
+       ========================= */
+
+    .resources-section {
+        width: 100%;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .resource-card {
+        padding: 25px;
+    }
+
+
+    /* =========================
+       JOIN
+       ========================= */
+
+    .join-section {
+        width: 100%;
+
+        margin: 50px 0 60px;
+
+        padding: 50px 28px;
+    }
+
+    .join-content {
+        max-width: 100%;
+    }
+
+    .join-section h2 {
+        font-size: 42px;
+    }
+
+    .join-text {
+        font-size: 16px;
+    }
+
+    .join-decoration {
+        right: -35px;
+
+        width: 150px;
+        height: 150px;
+
+        opacity: 0.35;
+    }
+
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    .site-footer {
+        margin-top: 70px;
+
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-bottom: 0;
+
+        padding: 50px 25px 25px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        padding-bottom: 40px;
+    }
+
+    .footer-brand {
+        text-align: center;
+    }
+
+    .footer-brand p {
+        max-width: 300px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-column {
+        align-items: center;
+    }
+
+    .social-links {
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
+    }
+
+}
