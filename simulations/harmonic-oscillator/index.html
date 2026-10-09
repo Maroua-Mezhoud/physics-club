@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quantum Harmonic Oscillator | PHYSICS CLUB</title>
+
+    
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <main class="quantum-page">
+
+        <a href="../index.html" class="back-link">
+            ← Back to Simulations
+        </a>
+
+        <header class="quantum-header">
+            <p class="section-label">QUANTUM MECHANICS</p>
+
+            <h1>Quantum Harmonic Oscillator</h1>
+
+            <p>
+                Explore quantized energy levels, quantum wavefunctions,
+                and probability densities through an interactive model.
+            </p>
+        </header>
+
+        <section class="quantum-panel">
+
+            <h2>Quantum State</h2>
+
+            <p>
+                Select an energy state to explore its wavefunction
+                and probability density.
+            </p>
+
+            <label for="energy-level">
+                Energy level (n)
+            </label>
+
+            <select id="energy-level">
+                <option value="0">n = 0 (Ground state)</option>
+                <option value="1">n = 1</option>
+                <option value="2">n = 2</option>
+                <option value="3">n = 3</option>
+                <option value="4">n = 4</option>
+                <option value="5">n = 5</option>
+            </select>
+
+            <div class="quantum-results">
+
+                <div class="result-card">
+                    <h3>Energy</h3>
+                    <p id="energy-value">E₀ = ½ℏω</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Wavefunction</h3>
+                    <p id="wavefunction-value">n = 0</p>
+                </div>
+
+            </div>
+
+            <div class="graph-placeholder" id="quantum-graph">
+                The quantum visualization will appear here.
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

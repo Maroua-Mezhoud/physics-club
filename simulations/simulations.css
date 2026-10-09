@@ -1,0 +1,45 @@
+
+/* Back to PHYSICS CLUB */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    margin: 32px 0 0 40px;
+    padding: 14px 20px;
+
+    color: #CBD5E1;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+
+    background: rgba(11, 18, 48, 0.75);
+    border: 1px solid rgba(0, 229, 245, 0.2);
+    border-radius: 12px;
+
+    transition: all 0.3s ease;
+}
+
+.back-link i {
+    color: #00E5F5;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover {
+    color: #FFFFFF;
+    background: rgba(0, 229, 245, 0.07);
+    border-color: rgba(0, 229, 245, 0.55);
+    box-shadow: 0 0 22px rgba(0, 229, 245, 0.08);
+}
+
+.back-link:hover i {
+    transform: translateX(-4px);
+}
+
+
+.back-link {
+    margin-bottom: 35px;
+}
