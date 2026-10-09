@@ -1,0 +1,158 @@
+
+/* Quantum Harmonic Oscillator */
+
+.quantum-page {
+    width: min(1150px, 92%);
+    margin: 0 auto;
+    padding: 40px 0 60px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 28px;
+    color: #a5b4fc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #c4b5fd;
+}
+
+.quantum-header {
+    max-width: 800px;
+    margin-bottom: 32px;
+}
+
+.quantum-header h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin: 12px 0;
+}
+
+.quantum-header > p:last-child {
+    color: #a5b4d8;
+    line-height: 1.8;
+}
+
+.quantum-panel {
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(148, 163, 255, 0.18);
+    border-radius: 18px;
+    background: linear-gradient(
+        145deg,
+        rgba(16, 26, 61, 0.95),
+        rgba(8, 13, 33, 0.96)
+    );
+}
+
+.quantum-panel > p {
+    color: #a5b4d8;
+    font-size: 0.9rem;
+}
+
+.quantum-panel label {
+    display: block;
+    margin: 20px 0 8px;
+}
+
+.quantum-panel select {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px;
+    border: 1px solid rgba(148, 163, 255, 0.25);
+    border-radius: 9px;
+    background: #0b1230;
+    color: #f1f5ff;
+    font: inherit;
+}
+
+.quantum-results {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.result-card {
+    padding: 17px;
+    border: 1px solid rgba(148, 163, 255, 0.12);
+    border-radius: 12px;
+    background: rgba(4, 8, 25, 0.45);
+}
+
+.result-card h3 {
+    margin: 0 0 8px;
+    color: #a5b4d8;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.result-card p {
+    margin: 0;
+    color: #e0e7ff;
+    font-size: 1.1rem;
+}
+
+.graph-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.graph-card {
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid rgba(148, 163, 255, 0.14);
+    border-radius: 13px;
+    background: rgba(4, 8, 25, 0.3);
+}
+
+.graph-card h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.graph-wide {
+    grid-column: 1 / -1;
+}
+
+.plot {
+    width: 100%;
+    height: 330px;
+}
+
+@media (max-width: 760px) {
+    .quantum-page {
+        width: 92%;
+        padding-top: 25px;
+    }
+
+    .quantum-panel {
+        padding: 17px;
+    }
+
+    .graph-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .graph-wide {
+        grid-column: auto;
+    }
+
+    .plot {
+        height: 290px;
+    }
+}
+
+@media (max-width: 420px) {
+    .quantum-results {
+        grid-template-columns: 1fr;
+    }
+
+    .plot {
+        height: 260px;
+    }
+}

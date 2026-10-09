@@ -2501,3 +2501,844 @@ img {
         justify-self: stretch;
     }
 }
+
+.back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #A5B4FC;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.back-home:hover {
+    color: #C4B5FD;
+    transform: translateX(-4px);
+}
+
+.back-home i {
+    font-size: 0.9rem;
+}
+
+
+.back-home {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #A5B4FC;
+    font-size: 16px;
+    text-decoration: none;
+
+    background: rgba(11, 18, 48, 0.65);
+    border: 1px solid rgba(165, 180, 252, 0.16);
+    border-radius: 50%;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+
+    z-index: 10;
+}
+
+.back-home:hover {
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #2563EB, #7C3AED);
+    border-color: transparent;
+    transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+    .back-home {
+        top: 16px;
+        left: 16px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================
+   SIMULATIONS GATEWAY
+   Immersive computational physics identity
+   ========================================= */
+
+.simulations-gateway {
+    --gateway-blue: #60A5FA;
+    --gateway-violet: #A78BFA;
+    --gateway-muted: #929FC4;
+
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    max-width: 1180px;
+
+    min-height: 590px;
+
+    margin: 70px auto 90px;
+    padding: 65px 58px 28px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(5, 12, 32, 0.99) 0%,
+            rgba(8, 15, 39, 0.98) 54%,
+            rgba(19, 13, 48, 0.98) 100%
+        );
+
+    border: 1px solid rgba(129, 140, 248, 0.2);
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+
+/* Ambient light */
+
+.gateway-atmosphere {
+    position: absolute;
+    z-index: -2;
+
+    width: 650px;
+    height: 650px;
+
+    top: -180px;
+    right: -100px;
+
+    background: radial-gradient(
+        circle,
+        rgba(99, 102, 241, 0.15) 0%,
+        rgba(37, 99, 235, 0.055) 40%,
+        transparent 72%
+    );
+
+    pointer-events: none;
+}
+
+
+/* Technical background grid */
+
+.gateway-grid {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(148, 163, 184, 0.045) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(148, 163, 184, 0.045) 1px,
+            transparent 1px
+        );
+
+    background-size: 44px 44px;
+
+    mask-image: linear-gradient(
+        90deg,
+        transparent,
+        black 45%,
+        black 100%
+    );
+
+    pointer-events: none;
+}
+
+
+/* Main composition */
+
+.gateway-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(300px, 0.95fr);
+
+    align-items: center;
+
+    gap: 24px;
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Left editorial column */
+
+.gateway-copy {
+    min-width: 0;
+    padding: 10px 0 20px;
+}
+
+
+.gateway-eyebrow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    color: #A5B4FC;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+    line-height: 1.8;
+}
+
+
+
+/* Add breathing room above the main title */
+.simulations-gateway .gateway-eyebrow {
+    margin-bottom: 28px;
+}
+
+
+.gateway-status-dot {
+    flex-shrink: 0;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #A78BFA;
+
+    box-shadow:
+        0 0 10px rgba(167, 139, 250, 0.7);
+}
+
+
+.gateway-eyebrow-line {
+    width: 25px;
+    height: 1px;
+
+    background: rgba(165, 180, 252, 0.3);
+}
+
+
+.gateway-overline {
+    margin: 62px 0 16px;
+
+    color: #818CF8;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.gateway-title {
+    margin: 0;
+
+    color: #F8FAFC;
+
+    font-size: clamp(44px, 5vw, 70px);
+    font-weight: 600;
+
+    line-height: 1.04;
+    letter-spacing: -2.8px;
+
+    text-align: left;
+}
+
+
+.gateway-title > span {
+    color: #C4B5FD;
+}
+
+
+.gateway-title .gateway-title-accent {
+    background: linear-gradient(
+        95deg,
+        #93C5FD 0%,
+        #A5B4FC 45%,
+        #C4B5FD 85%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.gateway-description {
+    max-width: 410px;
+
+    margin: 25px 0 30px;
+
+    color: #9BA8C8;
+
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+
+/* Main action */
+
+.gateway-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 22px;
+
+    min-height: 54px;
+    max-width: 100%;
+
+    padding: 14px 17px 14px 21px;
+
+    color: #FFFFFF;
+    background: linear-gradient(
+        110deg,
+        #315DCE,
+        #6947C7
+    );
+
+    border: 1px solid rgba(196, 181, 253, 0.25);
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+
+    box-shadow:
+        0 8px 30px rgba(76, 81, 191, 0.17);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.gateway-button-arrow {
+    font-size: 20px;
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+
+.gateway-button:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(196, 181, 253, 0.6);
+
+    box-shadow:
+        0 12px 32px rgba(76, 81, 191, 0.28);
+}
+
+
+.gateway-button:hover .gateway-button-arrow {
+    transform: translate(3px, -3px);
+}
+
+
+.gateway-footnote {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 35px;
+
+    color: rgba(165, 180, 252, 0.52);
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+
+.gateway-footnote-separator {
+    color: #6366F1;
+}
+
+
+/* Right scientific visualization */
+
+.gateway-visual {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    min-height: 400px;
+}
+
+
+.gateway-visual-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: rgba(165, 180, 252, 0.52);
+
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+}
+
+
+.gateway-label-top {
+    top: 12px;
+}
+
+
+.gateway-label-bottom {
+    bottom: 12px;
+}
+
+
+.gateway-visual-index {
+    color: rgba(196, 181, 253, 0.7);
+}
+
+
+/* Abstract field */
+
+.gateway-science-art {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1;
+
+    isolation: isolate;
+}
+
+
+.gateway-science-art::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    width: 72%;
+    height: 72%;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.16),
+        rgba(37, 99, 235, 0.045) 45%,
+        transparent 72%
+    );
+
+    filter: blur(12px);
+}
+
+
+.gateway-orbit {
+    position: absolute;
+
+    width: 73%;
+    height: 31%;
+
+    border: 1px solid rgba(147, 197, 253, 0.24);
+    border-radius: 50%;
+
+    box-shadow:
+        inset 0 0 18px rgba(129, 140, 248, 0.025),
+        0 0 18px rgba(129, 140, 248, 0.025);
+}
+
+
+.gateway-orbit-one {
+    transform: rotate(-35deg);
+}
+
+
+.gateway-orbit-two {
+    width: 73%;
+    height: 31%;
+
+    transform: rotate(35deg);
+
+    border-color: rgba(196, 181, 253, 0.25);
+}
+
+
+.gateway-orbit-three {
+    width: 58%;
+    height: 58%;
+
+    border-color: rgba(96, 165, 250, 0.2);
+}
+
+
+.gateway-core {
+    display: grid;
+    place-items: center;
+
+    width: 17%;
+    aspect-ratio: 1;
+
+    border: 1px solid rgba(165, 180, 252, 0.4);
+    border-radius: 50%;
+
+    background: rgba(49, 46, 129, 0.2);
+
+    box-shadow:
+        0 0 40px rgba(99, 102, 241, 0.14),
+        inset 0 0 22px rgba(129, 140, 248, 0.15);
+}
+
+
+.gateway-core-inner {
+    width: 28%;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background: #C4B5FD;
+
+    box-shadow:
+        0 0 12px rgba(196, 181, 253, 0.9),
+        0 0 32px rgba(129, 140, 248, 0.75);
+}
+
+
+.gateway-particle {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #93C5FD;
+
+    box-shadow:
+        0 0 12px rgba(147, 197, 253, 0.9);
+}
+
+
+.gateway-particle-one {
+    top: 23%;
+    left: 29%;
+}
+
+
+.gateway-particle-two {
+    right: 18%;
+    top: 49%;
+
+    background: #C4B5FD;
+
+    box-shadow:
+        0 0 12px rgba(196, 181, 253, 0.9);
+}
+
+
+.gateway-particle-three {
+    bottom: 23%;
+    left: 47%;
+}
+
+
+/* Waveform crossing the field */
+
+.gateway-wave {
+    position: absolute;
+
+    width: 118%;
+    max-width: none;
+    height: auto;
+
+    overflow: visible;
+
+    opacity: 0.78;
+
+    pointer-events: none;
+}
+
+
+.gateway-wave-path {
+    stroke-dasharray: 8 12;
+
+    animation: gateway-wave-flow 18s linear infinite;
+}
+
+
+.gateway-wave-path-back {
+    animation-duration: 26s;
+    animation-direction: reverse;
+
+    opacity: 0.65;
+}
+
+
+@keyframes gateway-wave-flow {
+    to {
+        stroke-dashoffset: -400;
+    }
+}
+
+
+/* Bottom technical signature */
+
+.gateway-bottom-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-top: 24px;
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(165, 180, 252, 0.12);
+
+    color: rgba(165, 180, 252, 0.43);
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    line-height: 1.8;
+}
+
+
+.gateway-bottom-mark {
+    color: #818CF8;
+}
+
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .simulations-gateway {
+        padding: 48px 35px 25px;
+    }
+
+    .gateway-content {
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 0.8fr);
+        gap: 12px;
+    }
+
+    .gateway-title {
+        font-size: clamp(42px, 6vw, 58px);
+        letter-spacing: -2px;
+    }
+
+    .gateway-visual {
+        min-height: 340px;
+    }
+
+    .gateway-overline {
+        margin-top: 45px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .simulations-gateway {
+        width: 100%;
+
+        margin: 45px auto 60px;
+        padding: 35px 22px 22px;
+
+        border-radius: 16px;
+    }
+
+    .gateway-grid {
+        background-size: 32px 32px;
+        mask-image: radial-gradient(
+            ellipse at center,
+            black,
+            transparent 95%
+        );
+    }
+
+    .gateway-content {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .gateway-eyebrow {
+        gap: 7px;
+
+        font-size: 8px;
+        letter-spacing: 1.1px;
+    }
+
+    .gateway-overline {
+        margin-top: 42px;
+
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .gateway-title {
+        font-size: clamp(45px, 12vw, 62px);
+        line-height: 1.04;
+        letter-spacing: -2px;
+    }
+
+    .gateway-description {
+        margin: 22px 0 25px;
+        font-size: 14px;
+    }
+
+    .gateway-button {
+        width: 100%;
+        gap: 12px;
+
+        padding: 14px 15px;
+
+        font-size: 12px;
+    }
+
+    .gateway-footnote {
+        gap: 7px;
+        margin-top: 27px;
+
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .gateway-visual {
+        min-height: 300px;
+        margin-top: 12px;
+    }
+
+    .gateway-science-art {
+        max-width: 340px;
+    }
+
+    .gateway-visual-label {
+        font-size: 8px;
+        letter-spacing: 0.7px;
+    }
+
+    .gateway-bottom-line {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+
+        margin-top: 18px;
+        padding-top: 17px;
+
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+
+/* Accessibility: respect reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .gateway-wave-path,
+    .gateway-wave-path-back {
+        animation: none;
+    }
+
+    .gateway-button,
+    .gateway-button-arrow {
+        transition: none;
+    }
+}
+
+
+/* =========================================
+   SIMULATIONS GATEWAY — DESKTOP COMPACT
+   ========================================= */
+
+@media (min-width: 901px) {
+
+    .simulations-gateway {
+        min-height: auto;
+        margin-top: 45px;
+        margin-bottom: 60px;
+        padding: 38px 48px 22px;
+    }
+
+    .gateway-content {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 20px;
+    }
+
+    .gateway-overline {
+        margin-top: 35px;
+        margin-bottom: 12px;
+    }
+
+    .gateway-title {
+        font-size: clamp(46px, 4.2vw, 60px);
+        line-height: 1.02;
+    }
+
+    .gateway-description {
+        margin-top: 18px;
+        margin-bottom: 22px;
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .gateway-footnote {
+        margin-top: 24px;
+    }
+
+    .gateway-visual {
+        min-height: 320px;
+    }
+
+    .gateway-science-art {
+        max-width: 350px;
+    }
+
+    .gateway-label-top {
+        top: 0;
+    }
+
+    .gateway-label-bottom {
+        bottom: 0;
+    }
+
+    .gateway-bottom-line {
+        margin-top: 16px;
+        padding-top: 14px;
+    }
+}
+

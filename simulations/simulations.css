@@ -43,3 +43,30 @@
 .back-link {
     margin-bottom: 35px;
 }
+
+.simulation-card,
+.simulation-card:visited,
+.simulation-card:hover,
+.simulation-card:focus {
+    text-decoration: none;
+}
+
+
+/* =========================================
+   SIMULATIONS PAGE — GRADIENT TITLE
+   ========================================= */
+
+.section-heading h2 {
+    background: linear-gradient(
+        90deg,
+        #60A5FA 0%,
+        #818CF8 50%,
+        #A855F7 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    color: transparent;
+}

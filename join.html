@@ -5,15 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join | PHYSICS CLUB</title>
     <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
 
+
+
 <main class="join-page">
+
+<a href="index.html" class="back-home" aria-label="Back to Home" title="Back to Home">
+    <i class="fa-solid fa-arrow-left"></i>
+</a>
 
     <section class="join-hero">
 
         <div class="join-hero-content">
+
 
             <p class="section-label">PHYSICS CLUB</p>
 
@@ -178,8 +189,55 @@
     </select>
 </div>
 
+
+
         <div class="form-section-title form-section-title-full">
             <span>02</span>
+            <h3>Required Documents</h3>
+        </div>
+
+        <div class="form-group form-group-full">
+            <label for="registration-certificate">
+                University Registration Certificate (PDF)
+                <span class="required-mark">*</span>
+            </label>
+
+            <input
+                type="file"
+                id="registration-certificate"
+                name="registration-certificate"
+                accept=".pdf,application/pdf"
+                required
+            >
+
+            <p class="form-hint">
+                Upload your current university registration certificate in PDF format.
+            </p>
+        </div>
+
+        <div class="form-group form-group-full">
+            <label for="personal-photo">
+                Personal Photo
+                <span class="required-mark">*</span>
+            </label>
+
+            <input
+                type="file"
+                id="personal-photo"
+                name="personal-photo"
+                accept="image/*"
+                required
+            >
+
+            <p class="form-hint">
+                Upload a clear personal photo in a supported image format.
+            </p>
+        </div>
+
+
+
+        <div class="form-section-title form-section-title-full">
+            <span>03</span>
             <h3>Your Curiosity</h3>
         </div>
 
@@ -193,6 +251,9 @@
                 required
             ></textarea>
         </div>
+
+
+
 
         <button type="submit" class="application-submit">
             Submit Application
