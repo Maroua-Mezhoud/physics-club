@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | PHYSICS CLUB</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <!-- Mobile overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark">
+                    <i class="fa-solid fa-atom"></i>
+                </span>
+
+                <span class="brand-text">
+                    <strong>PHYSICS CLUB</strong>
+                    <small>ADMINISTRATION</small>
+                </span>
+            </a>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-view="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </button>
+
+                <button class="nav-item" data-view="applications">
+                    <i class="fa-solid fa-inbox"></i>
+                    <span>Applications</span>
+                    <span class="nav-count" id="sidebarPendingCount">0</span>
+                </button>
+
+                <button class="nav-item" data-view="members">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Members</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-label">SYSTEM</div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item" data-view="settings">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="demo-notice">
+                    <i class="fa-solid fa-flask"></i>
+                    <div>
+                        <strong>Demo environment</strong>
+                        <span>Sample data only</span>
+                    </div>
+                </div>
+
+                <a class="back-to-site" href="../index.html">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to website</span>
+                </a>
+
+                <div class="admin-profile">
+                    <div class="avatar admin-avatar">A</div>
+                    <div class="profile-copy">
+                        <strong>Club Administrator</strong>
+                        <span>Preview mode</span>
+                    </div>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main area -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="icon-button mobile-menu"
+                            id="mobileMenuButton"
+                            aria-label="Open navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div>
+                        <div class="breadcrumb">PHYSICS CLUB <span>/</span> ADMIN</div>
+                        <h1 id="pageTitle">Dashboard</h1>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="environment-badge">
+                        <span class="status-dot"></span>
+                        DEMO MODE
+                    </span>
+
+                    <div class="topbar-date" id="currentDate"></div>
+                </div>
+            </header>
+
+            <div class="page-content">
+
+                <!-- Demo warning -->
+                <div class="demo-banner">
+                    <div class="demo-banner-icon">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+
+                    <div>
+                        <strong>This is a preview dashboard</strong>
+                        <p>
+                            All applicants and actions are simulated.
+                            Changes are not saved to Supabase.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dashboard -->
+                <section class="view-section active" id="view-dashboard">
+                    <div class="welcome-row">
+                        <div>
+                            <p class="eyebrow">YOUR CLUB AT A GLANCE</p>
+                            <h2>Welcome to your workspace.</h2>
+                            <p class="section-description">
+                                Review applications and manage your club community.
+                            </p>
+                        </div>
+
+                        <button class="primary-button" data-go="applications">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            Review applications
+                        </button>
+                    </div>
+
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Total applications</span>
+                                <span class="stat-icon blue-icon">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                </span>
+                            </div>
+                            <strong class="stat-number" id="statTotal">0</strong>
+                            <p class="stat-foot">All submitted demo requests</p>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Pending review</span>
+                                <span class="stat-icon purple-icon">
+                                    <i class="fa-solid fa-hourglass-half"></i>
+                                </span>
+                            </div>
+                            <strong class="stat-number" id="statPending">0</strong>
+                            <p class="stat-foot">Waiting for a decision</p>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Accepted</span>
+                                <span class="stat-icon green-icon">
+                                    <i class="fa-solid fa-user-check"></i>
+                                </span>
+                            </div>
+                            <strong class="stat-number" id="statAccepted">0</strong>
+                            <p class="stat-foot">Approved in this demo</p>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-top">
+                                <span>Rejected</span>
+                                <span class="stat-icon red-icon">
+                                    <i class="fa-solid fa-user-xmark"></i>
+                                </span>
+                            </div>
+                            <strong class="stat-number" id="statRejected">0</strong>
+                            <p class="stat-foot">Declined in this demo</p>
+                        </article>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <section class="panel recent-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Recent applications</h3>
+                                    <p>Latest requests received</p>
+                                </div>
+
+                                <button class="text-button" data-go="applications">
+                                    View all <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>APPLICANT</th>
+                                            <th>TYPE</th>
+                                            <th>STATUS</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentApplicationsBody"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="empty-state hidden" id="recentEmpty">
+                                <i class="fa-regular fa-folder-open"></i>
+                                <p>No applications to display.</p>
+                            </div>
+                        </section>
+
+                        <section class="panel overview-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <h3>Application overview</h3>
+                                    <p>Current demo statuses</p>
+                                </div>
+                            </div>
+
+                            <div class="overview-total">
+                                <strong id="overviewTotal">0</strong>
+                                <span>total applications</span>
+                            </div>
+
+                            <div class="progress-track">
+                                <span class="progress-segment progress-accepted"
+                                      id="acceptedProgress"></span>
+                                <span class="progress-segment progress-pending"
+                                      id="pendingProgress"></span>
+                                <span class="progress-segment progress-rejected"
+                                      id="rejectedProgress"></span>
+                            </div>
+
+                            <div class="legend-list">
+                                <div>
+                                    <span class="legend-label">
+                                        <span class="legend-dot accepted-dot"></span>
+                                        Accepted
+                                    </span>
+                                    <strong id="overviewAccepted">0</strong>
+                                </div>
+
+                                <div>
+                                    <span class="legend-label">
+                                        <span class="legend-dot pending-dot"></span>
+                                        Pending
+                                    </span>
+                                    <strong id="overviewPending">0</strong>
+                                </div>
+
+                                <div>
+                                    <span class="legend-label">
+                                        <span class="legend-dot rejected-dot"></span>
+                                        Rejected
+                                    </span>
+                                    <strong id="overviewRejected">0</strong>
+                                </div>
+                            </div>
+
+                            <div class="overview-note">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>
+                                    These figures reflect changes made during this preview session.
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <!-- Applications -->
+                <section class="view-section" id="view-applications">
+                    <div class="section-header">
+                        <div>
+                            <p class="eyebrow">APPLICATION MANAGEMENT</p>
+                            <h2>Applications</h2>
+                            <p class="section-description">
+                                Search, inspect and update submitted requests.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="filter-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search"
+                                   id="applicationSearch"
+                                   placeholder="Search by name or email..."
+                                   aria-label="Search applications">
+                        </div>
+
+                        <select id="statusFilter" aria-label="Filter by status">
+                            <option value="all">All statuses</option>
+                            <option value="pending">Pending review</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+
+                        <select id="typeFilter" aria-label="Filter by applicant type">
+                            <option value="all">All applicant types</option>
+                            <option value="student">Student</option>
+                            <option value="faculty">Faculty</option>
+                        </select>
+                    </div>
+
+                    <div class="panel applications-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>All requests</h3>
+                                <p id="applicationResultCount">0 applications</p>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>APPLICANT</th>
+                                        <th>TYPE</th>
+                                        <th>SUBMITTED</th>
+                                        <th>INTEREST</th>
+                                        <th>STATUS</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="applicationsTableBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="empty-state hidden" id="applicationsEmpty">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h3>No matching applications</h3>
+                            <p>Try another search term or filter.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Members -->
+                <section class="view-section" id="view-members">
+                    <div class="section-header">
+                        <div>
+                            <p class="eyebrow">COMMUNITY DIRECTORY</p>
+                            <h2>Club members</h2>
+                            <p class="section-description">
+                                Applicants accepted during this demo appear here.
+                            </p>
+                        </div>
+
+                        <span class="count-chip">
+                            <i class="fa-solid fa-users"></i>
+                            <span id="memberCount">0 members</span>
+                        </span>
+                    </div>
+
+                    <div class="filter-bar">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search"
+                                   id="memberSearch"
+                                   placeholder="Search members..."
+                                   aria-label="Search members">
+                        </div>
+                    </div>
+
+                    <div class="members-grid" id="membersGrid"></div>
+
+                    <div class="empty-state hidden panel" id="membersEmpty">
+                        <i class="fa-solid fa-users"></i>
+                        <h3>No members found</h3>
+                        <p>Accept a demo application to add a member here.</p>
+                    </div>
+                </section>
+
+                <!-- Settings -->
+                <section class="view-section" id="view-settings">
+                    <div class="section-header">
+                        <div>
+                            <p class="eyebrow">WORKSPACE PREFERENCES</p>
+                            <h2>Settings</h2>
+                            <p class="section-description">
+                                Preview the future administration settings.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="panel settings-panel">
+                        <div class="settings-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+
+                        <h3>Access and security</h3>
+                        <p>
+                            Administrator accounts, permissions and secure sign-in
+                            will be configured when the backend is connected.
+                        </p>
+
+                        <div class="settings-row">
+                            <div>
+                                <strong>Authentication</strong>
+                                <span>Secure administrator sign-in</span>
+                            </div>
+                            <span class="future-badge">Not configured</span>
+                        </div>
+
+                        <div class="settings-row">
+                            <div>
+                                <strong>Database connection</strong>
+                                <span>Supabase integration</span>
+                            </div>
+                            <span class="future-badge">Not connected</span>
+                        </div>
+
+                        <div class="settings-row">
+                            <div>
+                                <strong>Role permissions</strong>
+                                <span>Administrator and reviewer access</span>
+                            </div>
+                            <span class="future-badge">Planned</span>
+                        </div>
+
+                        <p class="settings-disclaimer">
+                            This preview does not authenticate users or protect private data.
+                            Do not use it to process real applications.
+                        </p>
+                    </div>
+                </section>
+
+                <footer class="main-footer">
+                    <span>PHYSICS CLUB <span class="footer-separator">·</span> Administration</span>
+                    <span>Built for physics, programming & discovery.</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application details modal -->
+    <div class="modal-backdrop hidden" id="applicationModal">
+        <section class="application-modal"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="modalApplicantName">
+
+            <div class="modal-header">
+                <div>
+                    <p class="eyebrow">APPLICATION DETAILS</p>
+                    <h2 id="modalApplicantName">Applicant</h2>
+                    <p id="modalApplicantEmail" class="modal-email"></p>
+                </div>
+
+                <button class="icon-button"
+                        id="closeModalButton"
+                        aria-label="Close application details">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-status-row">
+                    <span id="modalApplicantType" class="type-chip">Student</span>
+                    <span id="modalApplicantStatus" class="status-badge pending">Pending</span>
+                </div>
+
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span>Academic level / role</span>
+                        <strong id="modalAcademicLevel">—</strong>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Submission date</span>
+                        <strong id="modalSubmissionDate">—</strong>
+                    </div>
+
+                    <div class="detail-item detail-full">
+                        <span>Interests</span>
+                        <div id="modalInterests" class="interest-tags"></div>
+                    </div>
+
+                    <div class="detail-item detail-full">
+                        <span>Motivation</span>
+                        <p id="modalMotivation" class="motivation-text"></p>
+                    </div>
+
+                    <div class="detail-item detail-full">
+                        <span>Documents</span>
+                        <div class="document-placeholder">
+                            <i class="fa-regular fa-file-pdf"></i>
+                            <div>
+                                <strong>Sample document</strong>
+                                <span>Preview placeholder · no real file attached</span>
+                            </div>
+                            <i class="fa-solid fa-lock document-lock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="modal-demo-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Demo actions only. No email or database update is performed.
+                </p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="secondary-button" id="returnPendingButton">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Return to review
+                </button>
+
+                <div class="modal-action-group">
+                    <button class="danger-button" id="rejectApplicationButton">
+                        <i class="fa-solid fa-xmark"></i>
+                        Reject
+                    </button>
+
+                    <button class="primary-button" id="acceptApplicationButton">
+                        <i class="fa-solid fa-check"></i>
+                        Accept
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="toast-message" id="toastMessage" role="status" aria-live="polite"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
