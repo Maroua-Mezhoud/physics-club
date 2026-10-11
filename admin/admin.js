@@ -1,117 +1,30 @@
 
 "use strict";
 
-/*
- * PHYSICS CLUB — Admin dashboard prototype
- *
- * IMPORTANT:
- * All data below is fictional demo data.
- * Changes exist only in the current page session.
- * This prototype is not connected to Supabase.
- */
+/* ==========================================
+   PHYSICS CLUB — Connected Admin Dashboard
+   Supabase authentication, database and files
+========================================== */
 
-const demoApplications = [
-    {
-        id: 1001,
-        name: "Lina Benali",
-        email: "lina.demo@example.com",
-        type: "student",
-        level: "Licence 2",
-        submitted: "2026-10-08",
-        interests: ["Physics", "Scientific Research"],
-        status: "pending",
-        motivation:
-            "I would like to explore physics beyond the classroom, collaborate with other students, and take part in scientific projects."
-    },
-    {
-        id: 1002,
-        name: "Adam Mansouri",
-        email: "adam.demo@example.com",
-        type: "student",
-        level: "Licence 3",
-        submitted: "2026-10-07",
-        interests: ["Programming", "Computational Simulations"],
-        status: "accepted",
-        motivation:
-            "I am interested in using programming to model physical systems and develop interactive simulations for students."
-    },
-    {
-        id: 1003,
-        name: "Sara Haddad",
-        email: "sara.demo@example.com",
-        type: "student",
-        level: "Master 1",
-        submitted: "2026-10-06",
-        interests: ["Quantum Physics", "Scientific Research"],
-        status: "pending",
-        motivation:
-            "I hope to deepen my understanding of modern physics and work with other students on computational projects."
-    },
-    {
-        id: 1004,
-        name: "Yanis Karim",
-        email: "yanis.demo@example.com",
-        type: "student",
-        level: "Licence 1",
-        submitted: "2026-10-05",
-        interests: ["Astronomy", "Physics"],
-        status: "rejected",
-        motivation:
-            "I want to discover more areas of physics and learn how scientific ideas can be explored through practical projects."
-    },
-    {
-        id: 1005,
-        name: "Dr. Nadia Example",
-        email: "nadia.faculty@example.com",
-        type: "faculty",
-        level: "Faculty / Supervisor",
-        submitted: "2026-10-04",
-        interests: ["Scientific Research", "Supervision"],
-        status: "pending",
-        motivation:
-            "I am interested in supporting student research, advising computational physics projects, and encouraging scientific collaboration."
-    },
-    {
-        id: 1006,
-        name: "Meriem Saleh",
-        email: "meriem.demo@example.com",
-        type: "student",
-        level: "Master 2",
-        submitted: "2026-10-03",
-        interests: ["Programming", "Physics"],
-        status: "accepted",
-        motivation:
-            "I would like to contribute to the club's educational resources and help build useful tools for learning physics."
-    },
-    {
-        id: 1007,
-        name: "Omar Example",
-        email: "omar.demo@example.com",
-        type: "student",
-        level: "Licence 2",
-        submitted: "2026-10-02",
-        interests: ["Computational Simulations", "Programming"],
-        status: "pending",
-        motivation:
-            "I want to learn scientific programming and participate in projects that turn mathematical models into interactive visualizations."
-    }
-];
+const ADMIN_UID = "8afd9417-60d8-4f36-8f34-96045023fd8c";
+const DOCUMENTS_BUCKET = "application-documents";
 
-let applications = demoApplications.map(application => ({
-    ...application,
-    interests: [...application.interests]
-}));
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
+let applications = [];
 let selectedApplicationId = null;
 let toastTimeout = null;
-
-/* ------------------------------
-   DOM helpers
------------------------------- */
+let isLoading = false;
 
 const $ = selector => document.querySelector(selector);
-
 const $$ = selector => [...document.querySelectorAll(selector)];
+
+/* ==========================================
+   Helpers
+========================================== */
 
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, character => {
@@ -128,7 +41,7 @@ function escapeHTML(value) {
 }
 
 function getInitials(name) {
-    return String(name)
+    return String(name || "Student")
         .trim()
         .split(/\s+/)
         .slice(0, 2)
@@ -138,11 +51,11 @@ function getInitials(name) {
 }
 
 function formatDate(dateString) {
-    const date = new Date(`${dateString}T12:00:00`);
+    if (!dateString) return "—";
 
-    if (Number.isNaN(date.getTime())) {
-        return "—";
-    }
+    const date = new Date(dateString);
+
+    if (Number.isNaN(date.getTime())) return "—";
 
     return new Intl.DateTimeFormat("en", {
         day: "numeric",
@@ -184,18 +97,173 @@ function applicantCell(application) {
     `;
 }
 
+function parseInterests(value) {
+    if (Array.isArray(value)) return value;
+
+    if (typeof value !== "string" || !value.trim()) return [];
+
+    return value
+        .split(/[,;\n]/)
+        .map(item => item.trim())
+        .filter(Boolean);
+}
+
 function getCounts() {
     return {
         total: applications.length,
-        pending: applications.filter(item => item.status === "pending").length,
-        accepted: applications.filter(item => item.status === "accepted").length,
-        rejected: applications.filter(item => item.status === "rejected").length
+        pending: applications.filter(a => a.status === "pending").length,
+        accepted: applications.filter(a => a.status === "accepted").length,
+        rejected: applications.filter(a => a.status === "rejected").length
     };
 }
 
-/* ------------------------------
+/* ==========================================
+   Authentication
+========================================== */
+
+function showLogin() {
+    $("#loginScreen").classList.remove("hidden");
+    $("#appShell").classList.add("hidden");
+}
+
+function showAdmin(user) {
+    $("#loginScreen").classList.add("hidden");
+    $("#appShell").classList.remove("hidden");
+
+    $("#adminEmailLabel").textContent = user.email || "Administrator";
+}
+
+function showLoginError(message) {
+    $("#loginError").textContent = message;
+    $("#loginError").classList.remove("hidden");
+}
+
+function clearLoginError() {
+    $("#loginError").textContent = "";
+    $("#loginError").classList.add("hidden");
+}
+
+async function verifyAdmin(user) {
+    if (!user || user.id !== ADMIN_UID) {
+        await supabaseClient.auth.signOut();
+        showLogin();
+
+        showLoginError(
+            "This account is not authorized to access the admin dashboard."
+        );
+
+        return false;
+    }
+
+    showAdmin(user);
+    return true;
+}
+
+$("#loginForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    clearLoginError();
+
+    const email = $("#loginEmail").value.trim();
+    const password = $("#loginPassword").value;
+
+    const button = $("#loginButton");
+    button.disabled = true;
+    button.textContent = "Signing in...";
+
+    try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (error) throw error;
+
+        const authorized = await verifyAdmin(data.user);
+
+        if (authorized) {
+            $("#loginPassword").value = "";
+            await loadApplications();
+        }
+    } catch (error) {
+        console.error("Login failed:", error);
+        showLoginError(
+            "Sign-in failed. Check your email and password, then try again."
+        );
+    } finally {
+        button.disabled = false;
+        button.textContent = "Sign In";
+    }
+});
+
+$("#signOutButton").addEventListener("click", async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        console.error("Sign-out failed:", error);
+        showToast("Could not sign out. Please try again.");
+        return;
+    }
+
+    applications = [];
+    selectedApplicationId = null;
+    showLogin();
+    $("#loginPassword").value = "";
+    clearLoginError();
+
+    showToast("You have signed out.");
+});
+
+/* ==========================================
+   Load real applications from Supabase
+========================================== */
+
+async function loadApplications() {
+    if (isLoading) return;
+
+    isLoading = true;
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("applications")
+            .select("*")
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        applications = (data || []).map(row => ({
+            id: row.id,
+            name: row.full_name || "Unnamed applicant",
+            email: row.email || "",
+            type: "student",
+            level: row.academic_level || "Not specified",
+            submitted: row.created_at || "",
+            interests: parseInterests(row.interest),
+            status: row.status || "pending",
+            motivation: row.motivation || "No motivation statement provided.",
+            registrationCertificatePath: row.registration_certificate_path,
+            personalPhotoPath: row.personal_photo_path
+        }));
+
+        renderDashboard();
+        renderApplications();
+        renderMembers();
+
+        showToast(`Loaded ${applications.length} real application(s).`);
+    } catch (error) {
+        console.error("Could not load applications:", error);
+
+        showToast(
+            "Could not load applications. Check your connection and Supabase permissions."
+        );
+    } finally {
+        isLoading = false;
+    }
+}
+
+/* ==========================================
    Navigation
------------------------------- */
+========================================== */
 
 const viewTitles = {
     dashboard: "Dashboard",
@@ -205,9 +273,7 @@ const viewTitles = {
 };
 
 function showView(viewName) {
-    if (!viewTitles[viewName]) {
-        return;
-    }
+    if (!viewTitles[viewName]) return;
 
     $$(".view-section").forEach(section => {
         section.classList.toggle(
@@ -227,18 +293,10 @@ function showView(viewName) {
 
     closeSidebar();
 
-    if (viewName === "applications") {
-        renderApplications();
-    }
+    if (viewName === "applications") renderApplications();
+    if (viewName === "members") renderMembers();
 
-    if (viewName === "members") {
-        renderMembers();
-    }
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 $$(".nav-item").forEach(button => {
@@ -253,9 +311,9 @@ $$("[data-go]").forEach(button => {
     });
 });
 
-/* ------------------------------
+/* ==========================================
    Mobile sidebar
------------------------------- */
+========================================== */
 
 const sidebar = $("#sidebar");
 const sidebarOverlay = $("#sidebarOverlay");
@@ -274,18 +332,16 @@ function closeSidebar() {
 }
 
 mobileMenuButton.addEventListener("click", () => {
-    if (sidebar.classList.contains("open")) {
-        closeSidebar();
-    } else {
-        openSidebar();
-    }
+    sidebar.classList.contains("open")
+        ? closeSidebar()
+        : openSidebar();
 });
 
 sidebarOverlay.addEventListener("click", closeSidebar);
 
-/* ------------------------------
-   Dashboard
------------------------------- */
+/* ==========================================
+   Dashboard statistics and recent applications
+========================================== */
 
 function renderDashboard() {
     const counts = getCounts();
@@ -313,139 +369,170 @@ function renderDashboard() {
     $("#rejectedProgress").style.width =
         `${(counts.rejected / total) * 100}%`;
 
-    const recentApplications = [...applications]
-        .sort((a, b) => b.submitted.localeCompare(a.submitted))
+    const recent = [...applications]
+        .sort((a, b) => new Date(b.submitted) - new Date(a.submitted))
         .slice(0, 4);
 
-    $("#recentApplicationsBody").innerHTML = recentApplications
-        .map(application => `
-            <tr>
-                <td>${applicantCell(application)}</td>
+    $("#recentApplicationsBody").innerHTML = recent.map(application => `
+        <tr>
+            <td>${applicantCell(application)}</td>
 
-                <td>
-                    <span class="type-chip">
-                        ${escapeHTML(
-                            application.type === "faculty"
-                                ? "Faculty"
-                                : "Student"
-                        )}
-                    </span>
-                </td>
+            <td>
+                <span class="type-chip">Student</span>
+            </td>
 
-                <td>${statusBadge(application.status)}</td>
+            <td>${statusBadge(application.status)}</td>
 
-                <td>
-                    <button class="row-action"
-                            data-open-application="${application.id}"
-                            aria-label="View ${escapeHTML(application.name)}">
-                        View <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </button>
-                </td>
-            </tr>
-        `)
-        .join("");
+            <td>
+                <button class="row-action"
+                        data-open-application="${escapeHTML(application.id)}">
+                    View
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+            </td>
+        </tr>
+    `).join("");
 
-    $("#recentEmpty").classList.toggle(
-        "hidden",
-        recentApplications.length > 0
-    );
+    $("#recentEmpty").classList.toggle("hidden", recent.length > 0);
 }
 
-/* ------------------------------
-   Application search and filters
------------------------------- */
+/* ==========================================
+   Search and filters
+========================================== */
 
 function getFilteredApplications() {
-    const query = $("#applicationSearch").value
-        .trim()
-        .toLowerCase();
-
+    const query = $("#applicationSearch").value.trim().toLowerCase();
     const selectedStatus = $("#statusFilter").value;
     const selectedType = $("#typeFilter").value;
 
     return [...applications]
         .filter(application => {
-            const matchesSearch =
-                application.name.toLowerCase().includes(query) ||
-                application.email.toLowerCase().includes(query) ||
-                application.interests.some(interest =>
-                    interest.toLowerCase().includes(query)
-                );
+            const searchableText = [
+                application.name,
+                application.email,
+                ...application.interests
+            ].join(" ").toLowerCase();
+
+            const matchesSearch = searchableText.includes(query);
 
             const matchesStatus =
                 selectedStatus === "all" ||
                 application.status === selectedStatus;
 
+            // The current database stores student applications only.
             const matchesType =
-                selectedType === "all" ||
-                application.type === selectedType;
+                selectedType === "all" || selectedType === "student";
 
             return matchesSearch && matchesStatus && matchesType;
         })
-        .sort((a, b) => b.submitted.localeCompare(a.submitted));
+        .sort((a, b) => new Date(b.submitted) - new Date(a.submitted));
 }
 
 function renderApplications() {
     const filtered = getFilteredApplications();
 
     $("#applicationResultCount").textContent =
-        `${filtered.length} ${
-            filtered.length === 1 ? "application" : "applications"
-        }`;
+        `${filtered.length} ${filtered.length === 1 ? "application" : "applications"}`;
 
-    $("#applicationsTableBody").innerHTML = filtered
-        .map(application => `
-            <tr>
-                <td>${applicantCell(application)}</td>
+    $("#applicationsTableBody").innerHTML = filtered.map(application => `
+        <tr>
+            <td>${applicantCell(application)}</td>
 
-                <td>
-                    <span class="type-chip">
-                        ${escapeHTML(
-                            application.type === "faculty"
-                                ? "Faculty"
-                                : "Student"
-                        )}
-                    </span>
-                </td>
+            <td><span class="type-chip">Student</span></td>
 
-                <td>${escapeHTML(formatDate(application.submitted))}</td>
+            <td>${escapeHTML(formatDate(application.submitted))}</td>
 
-                <td>
-                    <div class="interest-cell">
-                        ${escapeHTML(application.interests.join(", "))}
-                    </div>
-                </td>
+            <td>
+                <div class="interest-cell">
+                    ${escapeHTML(application.interests.join(", ") || "—")}
+                </div>
+            </td>
 
-                <td>${statusBadge(application.status)}</td>
+            <td>${statusBadge(application.status)}</td>
 
-                <td>
-                    <button class="row-action"
-                            data-open-application="${application.id}">
-                        <i class="fa-regular fa-eye"></i>
-                        Details
-                    </button>
-                </td>
-            </tr>
-        `)
-        .join("");
+            <td>
+                <button class="row-action"
+                        data-open-application="${escapeHTML(application.id)}">
+                    <i class="fa-regular fa-eye"></i>
+                    Details
+                </button>
+            </td>
+        </tr>
+    `).join("");
 
-    $("#applicationsEmpty").classList.toggle(
-        "hidden",
-        filtered.length > 0
-    );
+    $("#applicationsEmpty").classList.toggle("hidden", filtered.length > 0);
 }
 
 $("#applicationSearch").addEventListener("input", renderApplications);
 $("#statusFilter").addEventListener("change", renderApplications);
 $("#typeFilter").addEventListener("change", renderApplications);
 
-/* ------------------------------
-   Application details modal
------------------------------- */
+/* ==========================================
+   Private application documents
+========================================== */
 
-function openApplication(applicationId) {
+async function createDocumentLink(path, label) {
+    if (!path) {
+        return `<div class="document-item">${escapeHTML(label)}: Not provided</div>`;
+    }
+
+    const { data, error } = await supabaseClient
+        .storage
+        .from(DOCUMENTS_BUCKET)
+        .createSignedUrl(path, 300);
+
+    if (error || !data?.signedUrl) {
+        console.error(`Could not create link for ${label}:`, error);
+
+        return `
+            <div class="document-item">
+                ${escapeHTML(label)}: Unable to create document link
+            </div>
+        `;
+    }
+
+    return `
+        <div class="document-item">
+            <span>${escapeHTML(label)}</span>
+            <a href="${escapeHTML(data.signedUrl)}"
+               target="_blank"
+               rel="noopener noreferrer">
+                Open document
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    `;
+}
+
+async function renderApplicationDocuments(application) {
+    const container = $("#modalDocuments");
+
+    container.textContent = "Loading documents...";
+
+    const [certificate, photo] = await Promise.all([
+        createDocumentLink(
+            application.registrationCertificatePath,
+            "Registration certificate"
+        ),
+        createDocumentLink(
+            application.personalPhotoPath,
+            "Personal photo"
+        )
+    ]);
+
+    // Do not update a modal that now belongs to another application.
+    if (selectedApplicationId !== application.id) return;
+
+    container.innerHTML = certificate + photo;
+}
+
+/* ==========================================
+   Application details modal
+========================================== */
+
+async function openApplication(applicationId) {
     const application = applications.find(
-        item => item.id === Number(applicationId)
+        item => item.id === applicationId
     );
 
     if (!application) {
@@ -457,26 +544,24 @@ function openApplication(applicationId) {
 
     $("#modalApplicantName").textContent = application.name;
     $("#modalApplicantEmail").textContent = application.email;
-
-    $("#modalApplicantType").textContent =
-        application.type === "faculty" ? "Faculty" : "Student";
+    $("#modalApplicantType").textContent = "Student";
 
     $("#modalApplicantStatus").className =
         `status-badge ${application.status}`;
 
-    $("#modalApplicantStatus").textContent =
-        formatStatus(application.status);
+    $("#modalApplicantStatus").textContent = formatStatus(application.status);
 
     $("#modalAcademicLevel").textContent = application.level;
     $("#modalSubmissionDate").textContent = formatDate(application.submitted);
     $("#modalMotivation").textContent = application.motivation;
 
-    $("#modalInterests").innerHTML = application.interests
-        .map(interest => `
+    $("#modalInterests").innerHTML = application.interests.length
+        ? application.interests.map(interest => `
             <span class="interest-tag">${escapeHTML(interest)}</span>
-        `)
-        .join("");
+        `).join("")
+        : "No interests provided.";
 
+    $("#modalDocuments").textContent = "Loading documents...";
     $("#applicationModal").classList.remove("hidden");
     document.body.style.overflow = "hidden";
 
@@ -487,6 +572,8 @@ function openApplication(applicationId) {
 
     $("#acceptApplicationButton").style.opacity = pending ? "1" : "0.45";
     $("#rejectApplicationButton").style.opacity = pending ? "1" : "0.45";
+
+    await renderApplicationDocuments(application);
 }
 
 function closeApplicationModal() {
@@ -510,11 +597,19 @@ document.addEventListener("keydown", event => {
     }
 });
 
-/* ------------------------------
-   Demo status updates
------------------------------- */
+document.addEventListener("click", event => {
+    const button = event.target.closest("[data-open-application]");
 
-function updateApplicationStatus(newStatus) {
+    if (button) {
+        openApplication(button.dataset.openApplication);
+    }
+});
+
+/* ==========================================
+   Update application status in the database
+========================================== */
+
+async function updateApplicationStatus(newStatus) {
     if (!["pending", "accepted", "rejected"].includes(newStatus)) {
         return;
     }
@@ -523,30 +618,63 @@ function updateApplicationStatus(newStatus) {
         item => item.id === selectedApplicationId
     );
 
-    if (!application) {
-        return;
-    }
+    if (!application) return;
 
     if (application.status === newStatus) {
         showToast(`This application is already ${formatStatus(newStatus).toLowerCase()}.`);
         return;
     }
 
-    application.status = newStatus;
+    const buttons = [
+        $("#acceptApplicationButton"),
+        $("#rejectApplicationButton"),
+        $("#returnPendingButton")
+    ];
 
-    renderDashboard();
-    renderApplications();
-    renderMembers();
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
 
-    closeApplicationModal();
+    try {
+        const { data, error } = await supabaseClient
+            .from("applications")
+            .update({ status: newStatus })
+            .eq("id", application.id)
+            .select("id, status");
 
-    const messages = {
-        pending: "Application returned to review.",
-        accepted: "Application accepted. Demo member list updated.",
-        rejected: "Application rejected in this demo."
-    };
+        if (error) throw error;
 
-    showToast(messages[newStatus]);
+        if (!data || data.length === 0) {
+            throw new Error(
+                "No application was updated. Check the admin UPDATE policy and database permissions."
+            );
+        }
+
+        application.status = newStatus;
+
+        renderDashboard();
+        renderApplications();
+        renderMembers();
+        closeApplicationModal();
+
+        const messages = {
+            pending: "Application returned to pending review.",
+            accepted: "Application accepted. Member list updated.",
+            rejected: "Application rejected."
+        };
+
+        showToast(messages[newStatus]);
+    } catch (error) {
+        console.error("Status update failed:", error);
+
+        showToast(
+            "Status was not updated. Check your Supabase permissions and try again."
+        );
+    } finally {
+        buttons.forEach(button => {
+            button.disabled = false;
+        });
+    }
 }
 
 $("#acceptApplicationButton").addEventListener("click", () => {
@@ -561,36 +689,22 @@ $("#returnPendingButton").addEventListener("click", () => {
     updateApplicationStatus("pending");
 });
 
-/*
- * Event delegation allows View/Details buttons to work
- * after the tables have been re-rendered.
- */
-document.addEventListener("click", event => {
-    const button = event.target.closest("[data-open-application]");
-
-    if (button) {
-        openApplication(button.dataset.openApplication);
-    }
-});
-
-/* ------------------------------
-   Members
------------------------------- */
+/* ==========================================
+   Accepted members
+========================================== */
 
 function renderMembers() {
     const query = $("#memberSearch").value.trim().toLowerCase();
 
     const members = applications.filter(application => {
-        const isAccepted = application.status === "accepted";
+        const searchableText = [
+            application.name,
+            application.email,
+            ...application.interests
+        ].join(" ").toLowerCase();
 
-        const matchesSearch =
-            application.name.toLowerCase().includes(query) ||
-            application.email.toLowerCase().includes(query) ||
-            application.interests.some(interest =>
-                interest.toLowerCase().includes(query)
-            );
-
-        return isAccepted && matchesSearch;
+        return application.status === "accepted" &&
+            searchableText.includes(query);
     });
 
     const acceptedCount = applications.filter(
@@ -600,61 +714,53 @@ function renderMembers() {
     $("#memberCount").textContent =
         `${acceptedCount} ${acceptedCount === 1 ? "member" : "members"}`;
 
-    $("#membersGrid").innerHTML = members
-        .map(member => `
-            <article class="member-card">
-                <div class="member-card-top">
-                    <div class="applicant-avatar">
-                        ${escapeHTML(getInitials(member.name))}
-                    </div>
-
-                    <div>
-                        <h3>${escapeHTML(member.name)}</h3>
-                        <p class="member-email">${escapeHTML(member.email)}</p>
-                    </div>
+    $("#membersGrid").innerHTML = members.map(member => `
+        <article class="member-card">
+            <div class="member-card-top">
+                <div class="applicant-avatar">
+                    ${escapeHTML(getInitials(member.name))}
                 </div>
 
-                <div class="member-card-divider"></div>
-
-                <div class="member-meta">
-                    <div class="member-meta-row">
-                        <span>Membership</span>
-                        <strong>Accepted</strong>
-                    </div>
-
-                    <div class="member-meta-row">
-                        <span>Category</span>
-                        <strong>
-                            ${escapeHTML(
-                                member.type === "faculty"
-                                    ? "Faculty"
-                                    : "Student"
-                            )}
-                        </strong>
-                    </div>
-
-                    <div class="member-meta-row">
-                        <span>Academic level / role</span>
-                        <strong>${escapeHTML(member.level)}</strong>
-                    </div>
-
-                    <div class="member-meta-row">
-                        <span>Interests</span>
-                        <strong>${escapeHTML(member.interests.join(", "))}</strong>
-                    </div>
+                <div>
+                    <h3>${escapeHTML(member.name)}</h3>
+                    <p class="member-email">${escapeHTML(member.email)}</p>
                 </div>
-            </article>
-        `)
-        .join("");
+            </div>
+
+            <div class="member-card-divider"></div>
+
+            <div class="member-meta">
+                <div class="member-meta-row">
+                    <span>Membership</span>
+                    <strong>Accepted</strong>
+                </div>
+
+                <div class="member-meta-row">
+                    <span>Category</span>
+                    <strong>Student</strong>
+                </div>
+
+                <div class="member-meta-row">
+                    <span>Academic level</span>
+                    <strong>${escapeHTML(member.level)}</strong>
+                </div>
+
+                <div class="member-meta-row">
+                    <span>Interests</span>
+                    <strong>${escapeHTML(member.interests.join(", ") || "—")}</strong>
+                </div>
+            </div>
+        </article>
+    `).join("");
 
     $("#membersEmpty").classList.toggle("hidden", members.length > 0);
 }
 
 $("#memberSearch").addEventListener("input", renderMembers);
 
-/* ------------------------------
-   Notifications
------------------------------- */
+/* ==========================================
+   Toast notifications
+========================================== */
 
 function showToast(message) {
     const toast = $("#toastMessage");
@@ -666,23 +772,38 @@ function showToast(message) {
 
     toastTimeout = setTimeout(() => {
         toast.classList.remove("visible");
-    }, 2800);
+    }, 3500);
 }
 
-/* ------------------------------
-   Initialization
------------------------------- */
+/* ==========================================
+   Initialization and session restoration
+========================================== */
 
-function initializeDashboard() {
+async function initializeDashboard() {
     $("#currentDate").textContent = new Intl.DateTimeFormat("en", {
         day: "numeric",
         month: "short",
         year: "numeric"
     }).format(new Date());
 
-    renderDashboard();
-    renderApplications();
-    renderMembers();
+    showLogin();
+
+    try {
+        const { data, error } = await supabaseClient.auth.getSession();
+
+        if (error) throw error;
+
+        if (data.session?.user) {
+            const authorized = await verifyAdmin(data.session.user);
+
+            if (authorized) {
+                await loadApplications();
+            }
+        }
+    } catch (error) {
+        console.error("Session initialization failed:", error);
+        showLoginError("Could not verify your session. Please sign in again.");
+    }
 }
 
 initializeDashboard();
