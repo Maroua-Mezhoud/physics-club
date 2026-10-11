@@ -15,51 +15,117 @@
 
 <body>
     <!-- Administrator sign-in -->
-    <section class="login-screen" id="loginScreen">
-        <form class="login-card" id="loginForm">
-            <div class="login-logo">
-                <i class="fa-solid fa-atom"></i>
+    
+<!-- Administrator sign-in -->
+<section class="login-screen" id="loginScreen">
+    <div class="login-layout">
+
+        <!-- Visual identity -->
+        <div class="login-intro">
+            <a href="../index.html" class="login-brand">
+                <span class="login-brand-icon">
+                    <i class="fa-solid fa-atom"></i>
+                </span>
+                <span>PHYSICS <strong>CLUB</strong></span>
+            </a>
+
+            <div class="login-visual" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+                <div class="orbit-core">
+                    <i class="fa-solid fa-atom"></i>
+                </div>
+                <span class="orbit-point point-one"></span>
+                <span class="orbit-point point-two"></span>
+                <span class="orbit-point point-three"></span>
             </div>
 
-            <p class="eyebrow">PHYSICS CLUB</p>
-            <h1>Admin sign in</h1>
-            <p class="login-description">
-                Sign in with your authorized administrator account.
-            </p>
+            <div class="login-intro-copy">
+                <p class="login-kicker">THE SCIENCE BEHIND THE CODE</p>
+                <h2>Explore the<br>unseen.</h2>
+                <p>
+                    A dedicated space for physics, programming,
+                    and computational discovery.
+                </p>
+            </div>
 
-            <label for="loginEmail">Email address</label>
-            <input
-                id="loginEmail"
-                type="email"
-                autocomplete="username"
-                placeholder="Administrator email"
-                required
-            >
+            <div class="login-intro-footer">
+                <span class="intro-status-dot"></span>
+                UNIVERSITY PHYSICS COMMUNITY
+            </div>
+        </div>
 
-            <label for="loginPassword">Password</label>
-            <input
-                id="loginPassword"
-                type="password"
-                autocomplete="current-password"
-                placeholder="Your password"
-                required
-            >
+        <!-- Sign-in form -->
+        <div class="login-form-side">
+            <form class="login-card" id="loginForm">
+                <div class="login-mobile-brand">
+                    <i class="fa-solid fa-atom"></i>
+                    PHYSICS CLUB
+                </div>
 
-            <p class="login-error" id="loginError" role="alert"></p>
+                <div class="login-heading">
+                    <span class="login-overline">ADMINISTRATOR ACCESS</span>
+                    <h1>Welcome back<span>.</span></h1>
+                    <p>
+                        Sign in to access your club workspace.
+                    </p>
+                </div>
 
-            <button class="primary-button login-submit"
+                <div class="login-field">
+                    <label for="loginEmail">Email address</label>
+                    <div class="login-input-wrap">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input
+                            id="loginEmail"
+                            type="email"
+                            autocomplete="username"
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="login-field">
+                    <label for="loginPassword">Password</label>
+                    <div class="login-input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input
+                            id="loginPassword"
+                            type="password"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <p class="login-error" id="loginError" role="alert"></p>
+
+                <button
+                    class="primary-button login-submit"
                     id="loginButton"
-                    type="submit">
-                <i class="fa-solid fa-lock"></i>
-                Sign in securely
-            </button>
+                    type="submit"
+                >
+                    <span>Sign in securely</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
 
-            <a class="login-back" href="../index.html">
-                <i class="fa-solid fa-arrow-left"></i>
-                Back to PHYSICS CLUB
-            </a>
-        </form>
-    </section>
+                <div class="login-security-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Restricted access · Authorized administrators only</span>
+                </div>
+
+                <a class="login-back" href="../index.html">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to PHYSICS CLUB
+                </a>
+            </form>
+        </div>
+
+    </div>
+</section>
+
 
     <div class="app-shell hidden" id="appShell">
 
