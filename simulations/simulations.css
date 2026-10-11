@@ -70,3 +70,140 @@
 
     color: transparent;
 }
+
+
+
+/* Simulation creator identity */
+.simulation-creator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(148, 163, 184, 0.16);
+    text-align: left;
+}
+
+.creator-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.20);
+    color: #C084FC;
+    font-size: 20px;
+}
+
+.creator-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.creator-name {
+    color: #F1F5F9;
+    font-size: 14px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.creator-role {
+    color: #A5B4FC;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.creator-link-icon {
+    flex-shrink: 0;
+    margin-left: auto;
+    color: #94A3B8;
+    font-size: 13px;
+}
+
+.simulation-card .simulation-creator {
+    box-sizing: border-box;
+}
+
+.simulation-card .simulation-status {
+    display: inline-block;
+    margin-top: 18px;
+}
+
+.simulation-card:hover .creator-link-icon {
+    color: #C084FC;
+}
+
+@media (max-width: 480px) {
+    .creator-badge {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .creator-name {
+        font-size: 13px;
+    }
+
+    .creator-role {
+        font-size: 11px;
+    }
+}
+
+/* Fix simulation card layout */
+
+.simulation-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 320px), 1fr)
+    );
+    gap: 24px;
+    align-items: stretch;
+}
+
+.simulation-card {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.simulation-card:focus-visible {
+    outline: 2px solid #A855F7;
+    outline-offset: 4px;
+}
+
+.simulation-card .simulation-creator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.simulation-card .simulation-status {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
+    padding: 10px 14px;
+    white-space: normal;
+}
+
+
+
+/* Founder badge */
+
+.founder-badge {
+    background: #172554;
+    color: #FACC15;
+    border-radius: 12px;
+    font-size: 20px;
+}
