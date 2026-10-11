@@ -207,3 +207,11 @@
     border-radius: 12px;
     font-size: 20px;
 }
+
+
+
+.simulation-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
