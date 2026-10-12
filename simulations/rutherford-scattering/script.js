@@ -85,27 +85,23 @@
     drawChart();
   }
 
-  // A numerically integrated orbit in a repulsive 1/r potential. Initial
-  // conditions are chosen far from the nucleus; softening only avoids a
-  // singular numerical step at an exact head-on encounter.
-  function integrateOrbit(b, p) {
-    const steps = 1250, dt = 0.0024;
-    let x = -7.5, y = b / 28;
-    let vx = 1.0, vy = 0.0;
-    const strength = 0.45 * (K * p.Z / p.E) / 20;
-    const pts = [];
-    for (let i = 0; i < steps; i++) {
-      const r2 = x*x + y*y + 0.018;
-      const r = Math.sqrt(r2);
-      const ax = strength * x / (r2 * r);
-      const ay = strength * y / (r2 * r);
-      vx += ax * dt; vy += ay * dt;
-      x += vx * dt; y += vy * dt;
-      if (i % 3 === 0) pts.push({ x, y });
-      if (x > 7.8) break;
-    }
-    return pts;
+function integrateOrbit(b, p) {
+  const s = p.Z * K / p.E;          // = d/2
+  let x = -400, y = b, vx = 1, vy = 0;
+  const pts = [];
+  for (let i = 0; i < 20000; i++) {
+    const r2 = x*x + y*y, r = Math.sqrt(r2);
+    const dt = Math.min(1, 0.02 * r);   // خطوة متكيفة
+    // leapfrog
+    vx += 0.5*dt*s*x/(r2*r); vy += 0.5*dt*s*y/(r2*r);
+    x += vx*dt; y += vy*dt;
+    const r2n = x*x + y*y, rn = Math.sqrt(r2n);
+    vx += 0.5*dt*s*x/(r2n*rn); vy += 0.5*dt*s*y/(r2n*rn);
+    if (i % 4 === 0) pts.push({x, y});
+    if (x > 0 && r > 400) break;
   }
+  return pts;
+}
 
   function trajectoryFor(particle) {
     // Incoming alpha particles are launched horizontally (0° to the x-axis,
