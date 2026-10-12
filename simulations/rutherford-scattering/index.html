@@ -6,38 +6,41 @@
   <meta name="theme-color" content="#050817">
   <title>Rutherford Scattering | PHYSICS CLUB</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="../index.html" aria-label="PHYSICS CLUB home">
-      <span class="brand-mark">PC</span>
-      <span><strong>PHYSICS CLUB</strong><small>COMPUTATIONAL PHYSICS LAB</small></span>
-    </a>
-    <span class="lab-tag"><span class="status-dot"></span> INTERACTIVE EXPERIMENT</span>
-  </header>
+
 
   <main class="page">
+
+ <a href="../index.html" class="back-home"
+   aria-label="Back to Simulations"
+   title="Back to Simulations">
+    <i class="fa-solid fa-arrow-left"></i>
+</a>
+
     <section class="intro">
-      <p class="eyebrow">ATOMIC PHYSICS / CLASSICAL SCATTERING</p>
+      
       <h1>Rutherford <span>Scattering</span></h1>
-      <p class="lead">Explore how positively charged alpha particles are deflected by a positively charged atomic nucleus.</p>
+      
     </section>
 
     <section class="workspace">
       <article class="panel scene-panel">
         <div class="panel-heading">
           <div><p class="eyebrow">01 / PARTICLE CHAMBER</p><h2>Particle trajectories</h2></div>
-          <span class="live-label"><span class="status-dot"></span> LIVE MODEL</span>
+          
         </div>
         <div class="scene-wrap">
           <canvas id="scene" width="900" height="620" aria-label="Animated alpha particle trajectories around a nucleus"></canvas>
           <div class="scene-legend">
             <span><i class="legend-dot alpha"></i> Alpha particle (+2e)</span>
-            <span><i class="legend-dot nucleus"></i> Nucleus (+Ze)</span>
+            <span><i class="legend-dot nucleus"></i> Nucleus (+Ze) </span>
             <span><i class="legend-line"></i> Trajectory</span>
           </div>
         </div>
-        <p class="muted note">Classical two-body scattering in a repulsive Coulomb field. The view is spatially scaled for clarity; the displayed path is numerically integrated.</p>
+        
         <div class="metrics">
           <div class="metric"><span>Particles detected</span><strong id="count">0</strong></div>
           <div class="metric"><span>Mean |scattering angle|</span><strong id="meanAngle">—</strong></div>
@@ -76,12 +79,8 @@
           <button id="reset" class="button secondary">Reset experiment</button>
           <button id="csv" class="button secondary">Export CSV ↗</button>
         </div>
-        <div class="equation-block">
-          <p class="eyebrow">RUTHERFORD SCATTERING</p>
-          <div class="equation">θ = 2 arctan <span class="fraction"><span>k Z e²</span><span>2 E b</span></span></div>
-          <p>For an alpha particle with charge +2e and a nucleus with charge +Ze, the Coulomb constant is expressed here as <strong>kₑe² ≈ 1.440 MeV·fm</strong>.</p>
-          <p class="equation-small">tan(θ/2) = 1.440 Z / (Eα b)</p>
-        </div>
+        
+        
       </aside>
     </section>
 
@@ -91,26 +90,14 @@
         <p class="chart-key"><span class="key-line"></span> Theory <span class="key-point"></span> Simulated particles</p>
       </div>
       <canvas id="chart" width="1000" height="440" aria-label="Graph of signed scattering angle against signed impact parameter"></canvas>
-      <p class="muted note">The curve is the Rutherford prediction. Points are generated from the same relation for the sampled impact parameters; the particle paths are obtained by integrating the classical Coulomb equations.</p>
+      
     </section>
 
-    <section class="learn-grid">
-      <article class="panel learning-card">
-        <p class="eyebrow">THE PHYSICS</p><h2>What should you observe?</h2>
-        <ul>
-          <li>Smaller impact parameters produce larger deflection angles.</li>
-          <li>Higher alpha-particle energy reduces the deflection.</li>
-          <li>A nucleus with a larger atomic number produces stronger repulsion.</li>
-          <li>Most particles with large impact parameters are deflected only slightly.</li>
-        </ul>
-      </article>
-      <article class="panel learning-card">
-        <p class="eyebrow">MODEL LIMITS</p><h2>Interpret the results</h2>
-        <p>This is a classical, educational model of Coulomb scattering. It treats the nucleus as a fixed point charge and does not include nuclear size, electron screening, or quantum effects. The animation is not a scale-accurate picture of an atom.</p>
-      </article>
-    </section>
+
   </main>
-  <footer><span>PHYSICS CLUB</span><span>University of Mohamed El Bachir El Ibrahimi — Bordj Bou Arreridj</span><span>Computational Physics Lab · 2026</span></footer>
+  
   <script src="script.js"></script>
+
 </body>
+
 </html>
