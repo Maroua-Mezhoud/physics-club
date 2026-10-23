@@ -3,520 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHYSICS CLUB</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+    <meta name="color-scheme" content="dark">
 
+    <title>PHYSICS CLUB — Explore Physics Through Code</title>
+    <meta name="description" content="PHYSICS CLUB at the University of Mohamed El Bachir El Ibrahimi, Bordj Bou Arreridj — a scientific space for physics, programming and computational simulations.">
+    <meta name="theme-color" content="#020617">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PHYSICS CLUB — Explore Physics Through Code">
+    <meta property="og:description" content="Physics, programming and computational exploration at the University of Bordj Bou Arreridj.">
+    <meta property="og:image" content="images/logo/logo.png">
+
+    <link rel="icon" href="images/logo/logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>document.documentElement.classList.add("js");</script>
+    <script src="script.js" defer></script>
+</head>
 
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 <header class="site-header">
+    <div class="container">
+        <div class="nav-inner">
 
-    <h1 class="visually-hidden">PHYSICS CLUB</h1>
-
-    <div class="header-content">
-
-        <div class="header-logo">
-            
-            <img
-                src="images/logo/logo.png"
-                alt="PHYSICS CLUB Logo"
-                class="logo"
-            >
-
-        </div>
-
-        <div class="header-info">
-
-            <p class="header-label">
-                UNIVERSITY PHYSICS COMMUNITY
-            </p>
-
-            <p class="university-name">
-                University of Mohamed El Bachir El Ibrahimi
-                — Bordj Bou Arreridj
-            </p>
-
-            <div class="header-line"></div>
-
-            <p class="header-description">
-                Physics · Programming · Computational Exploration
-            </p>
-
-    </div>
-
-    <!-- University Logo -->
-    <div class="header-university-logo">
-        <img
-            src="images/university%20logo/university-logo.png"
-            alt="University of Mohamed El Bachir El Ibrahimi Logo"
-            class="university-logo"
-        >
-    </div>
-
-            
-        </div>
-
-    </div>
-
-</header>
-
-<nav class="navbar">
-
-    <div class="nav-brand">
-
-        <span class="brand-symbol">φ</span>
-
-        <span class="brand-name">
-            PHYSICS CLUB
-        </span>
-
-    </div>
-
-    <div class="nav-links">
-
-        <a href="#about">About</a>
-
-        <a href="#projects">Projects</a>
-
-        <a href="#simulations">Simulations</a>
-
-        <a href="#resources">Resources</a>
-
-        <a href="#vision">Vision</a>
-
-    </div>
-
-    <a href="#join" class="nav-button">
-        Join the Club
-        <span class="button-arrow">→</span>
-    </a>
-
-</nav>
-
-    <main>
-
-        <section class="hero">
-
-            <p class="hero-label">PHYSICS • PROGRAMMING • SIMULATIONS</p>
-
-        <h2>Explore Physics Through Code</h2>
-
-            <p class="hero-text">
-        A scientific space for learning physics,
-        programming, and computational simulations.
-            </p>
-
-            <a href="#about" class="hero-button">Explore the Club</a>
-
-        </section>
-
-        <section id="about">
-            <h2>About Our Club</h2>
-            <p>
-                PHYSICS CLUB is a scientific space dedicated to
-                physics, programming, and computational simulations.
-            </p>
-        </section>
-
-        <section id="vision">
-            <h2>Our Vision</h2>
-            <p>
-                To use programming and computational tools to
-                understand physics and explore scientific ideas.
-            </p>
-        </section>
-
-        <section id="projects" class="content-section">
-
-    <h2>Projects</h2>
-
-    <p>
-        Explore projects that combine physics,
-        programming, and computational thinking.
-    </p>
-
-    <div class="project-grid">
-
-        <article class="project-card">
-            <h3>Computational Physics</h3>
-            <p>
-                Exploring physical problems through programming
-                and numerical methods.
-            </p>
-        </article>
-
-        <article class="project-card">
-            <h3>Physics Simulations</h3>
-            <p>
-                Building interactive simulations to visualize
-                physical phenomena.
-            </p>
-        </article>
-
-        <article class="project-card">
-            <h3>Scientific Programming</h3>
-            <p>
-                Learning how code can be used to analyze,
-                model, and understand physical systems.
-            </p>
-        </article>
-
-            </div>
-
-        </section>
-
-
-
-<section id="simulations" class="simulations-gateway">
-
-    <div class="gateway-atmosphere" aria-hidden="true"></div>
-    <div class="gateway-grid" aria-hidden="true"></div>
-
-    <div class="gateway-content">
-
-        <div class="gateway-copy">
-
-            <div class="gateway-eyebrow">
-            <span class="gateway-status-dot"></span>
-                COMPUTATIONAL PHYSICS
-            </div>
-
-            <h2 class="gateway-title">
-                Physics,<br>
-                <span>Beyond the</span><br>
-                <span class="gateway-title-accent">Equations.</span>
-            </h2>
-
-            <p class="gateway-description">
-                Explore physics through interactive computational
-                models — from classical motion to quantum mechanics.
-            </p>
-
-            <a
-                href="simulations/index.html"
-                class="gateway-button"
-            >
-                <span>Explore Simulations</span>
-
-                <span class="gateway-button-arrow" aria-hidden="true">
-                    ↗
-                </span>
+            <a class="brand" href="#top" aria-label="PHYSICS CLUB — home">
+                <span class="brand-mark" aria-hidden="true">φ</span>
+                <span class="brand-text">PHYSICS CLUB</span>
             </a>
 
-        
+            <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+                <ul class="nav-list">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#simulations">Simulations</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                </ul>
+            </nav>
+
+            <a class="btn btn-light btn-sm nav-cta" href="join.html">
+                Join the Club <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+
+            <button class="nav-toggle" type="button"
+                    aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+                <span class="nav-toggle-bars" aria-hidden="true"></span>
+            </button>
 
         </div>
+    </div>
+</header>
 
-        <div
-            class="gateway-visual"
-            aria-hidden="true"
-        >
+<main id="main">
 
-            <div class="gateway-visual-label gateway-label-top">
-                <span>FIELD / 001</span>
-                <span>SCIENTIFIC VISUALIZATION</span>
-            </div>
+    <!-- =====================================================
+         HERO — live Lorenz attractor
+         ===================================================== -->
+    <section class="hero" id="top">
 
-            <div class="gateway-science-art">
+        <canvas class="hero-canvas" id="lorenz" aria-hidden="true"></canvas>
+        <div class="hero-shade" aria-hidden="true"></div>
 
-                <div class="gateway-orbit gateway-orbit-one"></div>
-                <div class="gateway-orbit gateway-orbit-two"></div>
-                <div class="gateway-orbit gateway-orbit-three"></div>
+        <div class="container hero-inner">
 
-                <div class="gateway-core">
-                    <div class="gateway-core-inner"></div>
-                </div>
+            <p class="affiliation">
+                <img src="images/university%20logo/university-logo.png" alt="" width="28" height="28">
+                <span>University of Mohamed El Bachir El Ibrahimi — Bordj Bou Arreridj</span>
+            </p>
 
-                <span class="gateway-particle gateway-particle-one"></span>
-                <span class="gateway-particle gateway-particle-two"></span>
-                <span class="gateway-particle gateway-particle-three"></span>
+            <h1 class="hero-title">
+                <span class="h-line"><span>Explore Physics</span></span>
+                <span class="h-line"><span class="text-gradient">Through Code.</span></span>
+            </h1>
 
-                <svg
-                    class="gateway-wave"
-                    viewBox="0 0 500 300"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <defs>
-                        <linearGradient
-                            id="gatewayWaveGradient"
-                            x1="0"
-                            y1="0"
-                            x2="1"
-                            y2="0"
-                        >
-                            <stop offset="0%" stop-color="#2563EB"
-                                  stop-opacity="0.05"/>
-                            <stop offset="50%" stop-color="#818CF8"
-                                  stop-opacity="0.9"/>
-                            <stop offset="100%" stop-color="#C084FC"
-                                  stop-opacity="0.05"/>
-                        </linearGradient>
-                    </defs>
+            <p class="hero-lead">
+                A scientific space for learning physics,
+                programming, and computational simulations.
+            </p>
 
-                    <path
-                        class="gateway-wave-path gateway-wave-path-back"
-                        d="M0 150 C50 150 55 60 105 60 S160 240 210 240 S265 60 315 60 S370 240 420 240 S465 150 500 150"
-                        fill="none"
-                        stroke="url(#gatewayWaveGradient)"
-                        stroke-width="1.2"
-                    />
-
-                    <path
-                        class="gateway-wave-path"
-                        d="M0 150 C50 150 55 100 105 100 S160 200 210 200 S265 100 315 100 S370 200 420 200 S465 150 500 150"
-                        fill="none"
-                        stroke="#818CF8"
-                        stroke-opacity="0.72"
-                        stroke-width="1.5"
-                    />
-                </svg>
-
-                <div class="gateway-coordinate gateway-coordinate-one">
-                    <span class="coordinate-dot"></span>
-                    <span>QUANTUM STATE</span>
-                </div>
-
-                <div class="gateway-coordinate gateway-coordinate-two">
-                    <span class="coordinate-dot"></span>
-                    <span>PHYSICAL SYSTEM</span>
-                </div>
-
-            </div>
-
-            <div class="gateway-visual-label gateway-label-bottom">
-                <span>MODEL / EXPLORE / UNDERSTAND</span>
-                <span class="gateway-visual-index">PC—SIM.01</span>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#simulations">
+                    Try the Simulation <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-ghost" href="#about">Explore the Club</a>
             </div>
 
         </div>
 
-    </div>
-
-    <div class="gateway-bottom-line">
-        <span>AN OPEN SPACE FOR SCIENTIFIC EXPLORATION</span>
-        <span>PHYSICS CLUB <span class="gateway-bottom-mark">/</span> SIMULATIONS</span>
-    </div>
-
-</section>
-
-
-
-    </div>
-
-
-        </section>
-
-        <section id="resources" class="resources-section">
-
-    <div class="section-heading">
-
-        <p class="section-label">LEARNING &amp; KNOWLEDGE</p>
-
-        <h2>Resources</h2>
-
-        <p>
-            Explore carefully selected resources for physics,
-            programming, mathematics, and computational science.
-        </p>
-
-    </div>
-
-
-    <div class="resource-grid">
-
-        <article class="resource-card">
-
-            <span class="resource-number">01</span>
-
-            <h3>Physics</h3>
-
-            <p>
-                Concepts, references, and materials
-                for understanding fundamental physics.
-            </p>
-
-            <span class="resource-tag">PHYSICS</span>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <span class="resource-number">02</span>
-
-            <h3>Programming</h3>
-
-            <p>
-                Learn programming concepts and tools
-                useful for scientific and technical work.
-            </p>
-
-            <span class="resource-tag">CODE</span>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <span class="resource-number">03</span>
-
-            <h3>Computational Physics</h3>
-
-            <p>
-                Discover numerical methods, modelling,
-                and computational approaches to physics.
-            </p>
-
-            <span class="resource-tag">COMPUTATION</span>
-
-        </article>
-
-
-        <article class="resource-card">
-
-            <span class="resource-number">04</span>
-
-            <h3>Mathematics</h3>
-
-            <p>
-                Mathematical tools and concepts that
-                support the study of physics and computation.
-            </p>
-
-            <span class="resource-tag">MATHEMATICS</span>
-
-        </article>
-
-    </div>
-
-</section>
-
-        <section id="join" class="join-section">
-
-    <div class="join-content">
-
-        <p class="section-label">BECOME PART OF THE COMMUNITY</p>
-
-        <h2>Join the Club</h2>
-
-        <p class="join-text">
-            Interested in physics, programming, and scientific exploration?
-            Connect with PHYSICS CLUB and take part in a space built
-            for learning, curiosity, and computational discovery.
-        </p>
-
-        <a href="join.html" class="join-button">
-        <span class="join-button-text">Join PHYSICS CLUB</span>
-        </a>
-
-    </div>
-
-    <div class="join-decoration">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+        <div class="hud hud-left" aria-hidden="true">
+            <span>LORENZ SYSTEM · LIVE</span>
+            <span>σ = 10 &nbsp; ρ = 28 &nbsp; β = 8/3</span>
+        </div>
+        <div class="hud hud-right" aria-hidden="true">
+            <span id="hud-readout">x +0.00 &nbsp; y +0.00 &nbsp; z 0.00</span>
+            <span>RK4 · dt = 0.006</span>
+        </div>
 
     </section>
 
 
-    </main>
+    <!-- =====================================================
+         EQUATION MARQUEE
+         ===================================================== -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <div class="marquee-group">
+                <span>E = mc²</span><i>✦</i>
+                <span>iħ ∂ψ/∂t = Ĥψ</span><i>✦</i>
+                <span>∇·E = ρ/ε₀</span><i>✦</i>
+                <span>F = ma</span><i>✦</i>
+                <span>ΔxΔp ≥ ħ/2</span><i>✦</i>
+                <span>∇×B = μ₀J + μ₀ε₀ ∂E/∂t</span><i>✦</i>
+                <span>S = k ln W</span><i>✦</i>
+                <span>ẍ = −ω²x</span><i>✦</i>
+                <span>Gμν + Λgμν = 8πG Tμν / c⁴</span><i>✦</i>
+            </div>
+            <div class="marquee-group">
+                <span>E = mc²</span><i>✦</i>
+                <span>iħ ∂ψ/∂t = Ĥψ</span><i>✦</i>
+                <span>∇·E = ρ/ε₀</span><i>✦</i>
+                <span>F = ma</span><i>✦</i>
+                <span>ΔxΔp ≥ ħ/2</span><i>✦</i>
+                <span>∇×B = μ₀J + μ₀ε₀ ∂E/∂t</span><i>✦</i>
+                <span>S = k ln W</span><i>✦</i>
+                <span>ẍ = −ω²x</span><i>✦</i>
+                <span>Gμν + Λgμν = 8πG Tμν / c⁴</span><i>✦</i>
+            </div>
+        </div>
+    </div>
 
 
+    <!-- =====================================================
+         ABOUT & VISION — scroll-lit statements
+         ===================================================== -->
+    <section class="section statements">
+        <div class="container">
+
+            <div class="statement" id="about">
+                <h2 class="eyebrow">01 — About Our Club</h2>
+                <p class="statement-text" data-words>
+                    PHYSICS CLUB is a scientific space dedicated to physics, programming, and computational simulations.
+                </p>
+            </div>
+
+            <div class="statement" id="vision">
+                <h2 class="eyebrow">02 — Our Vision</h2>
+                <p class="statement-text" data-words>
+                    To use programming and computational tools to understand physics and explore scientific ideas.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         PROJECTS — bento
+         ===================================================== -->
+    <section class="section" id="projects">
+        <div class="container">
+
+            <header class="section-head reveal">
+                <p class="eyebrow">What we do</p>
+                <h2 class="section-title">Projects</h2>
+                <p>
+                    Explore projects that combine physics,
+                    programming, and computational thinking.
+                </p>
+            </header>
+
+            <div class="bento">
+
+                <!-- Computational Physics -->
+                <article class="tile tile-wide reveal" data-spot>
+                    <div class="tile-top">
+                        <span class="tile-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></span>
+                        <span class="tile-index">01</span>
+                    </div>
+                    <h3>Computational Physics</h3>
+                    <p>
+                        Exploring physical problems through programming
+                        and numerical methods.
+                    </p>
+
+                    <figure class="plot" aria-label="Harmonic oscillator: exact solution versus the Euler method">
+                        <svg viewBox="0 0 400 140" preserveAspectRatio="none" role="img" focusable="false">
+                            <line class="plot-axis" x1="0" y1="70" x2="400" y2="70"/>
+                            <path id="plot-exact" class="plot-line plot-exact" pathLength="1" vector-effect="non-scaling-stroke"/>
+                            <path id="plot-euler" class="plot-line plot-euler" pathLength="1" vector-effect="non-scaling-stroke"/>
+                        </svg>
+                        <figcaption>
+                            <span class="key key-exact"></span> exact
+                            <span class="key key-euler"></span> Euler method — the error grows
+                        </figcaption>
+                    </figure>
+                </article>
+
+                <!-- Physics Simulations -->
+                <article class="tile tile-tall reveal" style="--i:1" data-spot>
+                    <div class="tile-top">
+                        <span class="tile-icon"><i class="fa-solid fa-cubes" aria-hidden="true"></i></span>
+                        <span class="tile-index">02</span>
+                    </div>
+                    <h3>Physics Simulations</h3>
+                    <p>
+                        Building interactive simulations to visualize
+                        physical phenomena.
+                    </p>
+
+                    <div class="sim-orbits" aria-hidden="true">
+                        <span class="sim-core"></span>
+                        <span class="sim-ring sim-ring-1"></span>
+                        <span class="sim-ring sim-ring-2"></span>
+                        <span class="sim-ring sim-ring-3"></span>
+                    </div>
+                </article>
+
+                <!-- Scientific Programming -->
+                <article class="tile tile-wide reveal" style="--i:2" data-spot>
+                    <div class="tile-top">
+                        <span class="tile-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></span>
+                        <span class="tile-index">03</span>
+                    </div>
+                    <h3>Scientific Programming</h3>
+                    <p>
+                        Learning how code can be used to analyze,
+                        model, and understand physical systems.
+                    </p>
+
+                    <div class="code" aria-label="Python example: a falling body integrated with the Euler method">
+                        <div class="code-bar" aria-hidden="true"><i></i><i></i><i></i><span>falling_body.py</span></div>
+<pre><code><span class="c"># A falling body, step by step</span>
+g, dt <span class="o">=</span> <span class="n">9.81</span>, <span class="n">0.01</span>
+y, v  <span class="o">=</span> <span class="n">100.0</span>, <span class="n">0.0</span>
+
+<span class="k">while</span> y <span class="o">&gt;</span> <span class="n">0</span>:
+    v <span class="o">-=</span> g <span class="o">*</span> dt      <span class="c"># update velocity</span>
+    y <span class="o">+=</span> v <span class="o">*</span> dt      <span class="c"># update position</span></code></pre>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         SIMULATIONS — live gravity lab
+         ===================================================== -->
+    <section class="section" id="simulations">
+        <div class="container">
+
+            <div class="sandbox-head reveal">
+                <div>
+                    <p class="eyebrow">Computational Physics</p>
+                    <h2 class="sandbox-title">
+                        Physics,<br>
+                        <span class="soft">Beyond the</span>
+                        <span class="text-gradient">Equations.</span>
+                    </h2>
+                </div>
+                <div class="sandbox-side">
+                    <p>
+                        Explore physics through interactive computational
+                        models — from classical motion to quantum mechanics.
+                    </p>
+                    <a class="btn btn-primary" href="simulations/index.html">
+                        Explore Simulations <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sandbox-stage reveal">
+
+                <canvas id="gravity" aria-label="Interactive gravity simulation. Drag on the canvas to launch a planet, or tap to drop one into orbit."></canvas>
+
+                <p class="stage-label stage-hint" id="sandbox-hint">
+                    <span class="gateway-dot" aria-hidden="true"></span>
+                    Drag to launch a planet · Tap to drop one in orbit
+                </p>
+                <p class="stage-label stage-readout" id="sandbox-readout" aria-live="off">bodies 4</p>
+
+                <div class="stage-controls">
+                    <button class="chip" type="button" data-action="pause"  aria-pressed="false">Pause</button>
+                    <button class="chip" type="button" data-action="trails" aria-pressed="true">Trails</button>
+                    <button class="chip" type="button" data-action="grid"   aria-pressed="true">Spacetime grid</button>
+                    <button class="chip" type="button" data-action="clear">Clear</button>
+                    <button class="chip" type="button" data-action="reset">Reset</button>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         RESOURCES
+         ===================================================== -->
+    <section class="section" id="resources">
+        <div class="container">
+
+            <header class="section-head reveal">
+                <p class="eyebrow">Learning &amp; Knowledge</p>
+                <h2 class="section-title">Resources</h2>
+                <p>
+                    Explore carefully selected resources for physics,
+                    programming, mathematics, and computational science.
+                </p>
+            </header>
+
+            <ol class="res-list">
+
+                <li class="res-row reveal" data-spot>
+                    <span class="res-num">01</span>
+                    <h3 class="res-title">Physics</h3>
+                    <p class="res-text">
+                        Concepts, references, and materials
+                        for understanding fundamental physics.
+                    </p>
+                    <span class="res-tag"><i class="fa-solid fa-atom" aria-hidden="true"></i> Physics</span>
+                </li>
+
+                <li class="res-row reveal" data-spot>
+                    <span class="res-num">02</span>
+                    <h3 class="res-title">Programming</h3>
+                    <p class="res-text">
+                        Learn programming concepts and tools
+                        useful for scientific and technical work.
+                    </p>
+                    <span class="res-tag"><i class="fa-solid fa-code" aria-hidden="true"></i> Code</span>
+                </li>
+
+                <li class="res-row reveal" data-spot>
+                    <span class="res-num">03</span>
+                    <h3 class="res-title">Computational Physics</h3>
+                    <p class="res-text">
+                        Discover numerical methods, modelling,
+                        and computational approaches to physics.
+                    </p>
+                    <span class="res-tag"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Computation</span>
+                </li>
+
+                <li class="res-row reveal" data-spot>
+                    <span class="res-num">04</span>
+                    <h3 class="res-title">Mathematics</h3>
+                    <p class="res-text">
+                        Mathematical tools and concepts that
+                        support the study of physics and computation.
+                    </p>
+                    <span class="res-tag"><i class="fa-solid fa-square-root-variable" aria-hidden="true"></i> Mathematics</span>
+                </li>
+
+            </ol>
+        </div>
+    </section>
+
+
+    <!-- =====================================================
+         JOIN
+         ===================================================== -->
+    <section class="section section-tight" id="join">
+        <div class="container">
+
+            <div class="cta reveal">
+
+                <div class="cta-rings" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+
+                <div class="cta-copy">
+                    <p class="eyebrow eyebrow-center">Become part of the community</p>
+                    <h2 class="cta-title text-gradient">Join the Club</h2>
+                    <p>
+                        Interested in physics, programming, and scientific exploration?
+                        Connect with PHYSICS CLUB and take part in a space built
+                        for learning, curiosity, and computational discovery.
+                    </p>
+                    <a class="btn btn-light btn-lg" href="join.html">
+                        Join PHYSICS CLUB <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
 <footer class="site-footer">
+    <div class="container">
 
-    <div class="footer-main">
+        <div class="footer-main">
 
-        <div class="footer-brand">
+            <div class="footer-brand">
+                <p class="footer-title">PHYSICS CLUB</p>
+                <p class="footer-university">
+                    University of Mohamed El Bachir El Ibrahimi — Bordj Bou Arreridj
+                </p>
+                <p>Physics, programming, and computational exploration.</p>
+            </div>
 
-        <h3>PHYSICS CLUB</h3>
+            <div class="footer-col">
+                <h2 class="footer-heading">Club</h2>
+                <a href="#about">About</a>
+                <a href="#vision">Our Vision</a>
+                <a href="join.html">Join the Club</a>
+            </div>
 
-        <p class="footer-university">
-        University of Mohamed El Bachir El Ibrahimi
-        — Bordj Bou Arreridj
-        </p>
+            <div class="footer-col">
+                <h2 class="footer-heading">Explore</h2>
+                <a href="#projects">Projects</a>
+                <a href="#simulations">Simulations</a>
+                <a href="#resources">Resources</a>
+            </div>
 
-        <p>
-        Physics, programming, and computational exploration.
-        </p>
-
-    </div>
-
-        <div class="footer-column footer-connect">
-
-    <h4>Connect</h4>
-
-    <div class="social-links">
-
-        <a href="#" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
-
-        <a href="#" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-
-        <a href="#" aria-label="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-        </a>
-
-        <a href="#" aria-label="Telegram">
-            <i class="fa-brands fa-telegram"></i>
-        </a>
-
-        <a
-        href="https://github.com/Maroua-Mezhoud/physics-club"
-        aria-label="GitHub"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-            <i class="fa-brands fa-github"></i>
-        </a>
-
-    </div>
-
-</div>
-
-        <div class="footer-column">
-            <h4>Club</h4>
-
-            <a href="#vision">Our Vision</a>
-            <a href="#join">Join the Club</a>
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>Explore</h4>
-
-            <a href="#projects">Projects</a>
-            <a href="#simulations">Simulations</a>
-            <a href="#resources">Resources</a>
+            <div class="footer-col">
+                <h2 class="footer-heading">Connect</h2>
+                <!-- TODO: replace each "#" with the club's real link -->
+                <div class="social-links">
+                    <a href="#" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Telegram"><i class="fa-brands fa-telegram" aria-hidden="true"></i></a>
+                    <a href="https://github.com/Maroua-Mezhoud/physics-club"
+                       aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
 
         </div>
 
+        <p class="footer-mark" aria-hidden="true">PHYSICS CLUB</p>
 
-
-    </div>
-
-    <div class="footer-bottom">
-
-        <p class="creator">
-            Created by <span>Maroua Mezhoud</span>
-        </p>
-
-        <p class="copyright">
-            © 2026 PHYSICS CLUB
-        </p>
+        <div class="footer-bottom">
+            <p>Created by <span>Maroua Mezhoud</span></p>
+            <p>© <span data-year>2026</span> PHYSICS CLUB</p>
+        </div>
 
     </div>
-
 </footer>
 
-<script src="script.js"></script>
-
 </body>
-
 </html>
